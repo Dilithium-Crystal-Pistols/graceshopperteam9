@@ -1,7 +1,52 @@
+#Team-Contract
+
+Roles
+•	Taskmaster
+•	Gitmaster
+•	Testmaster (writes out test specs?)
+
+Daily process
+•	Meeting 1: Morning standup started by yesterday's Taskmaster
+  o	New roles assigned (by yesterday’s Taskmaster)
+  o	Yesterday? Today? Obstacles? (by today’s Taskmaster)
+•	Pair on assigned tasks
+  o	Random to start and then complementing skill sets
+  o	Message in team slack what branch you’re working on (also check for others as well)
+  o	Standard format: driver and navigator
+  o	Allow for independent time – ask for 10 minutes to start to look at it individually
+•	Record issues that are non-blocking and discuss right after lunch at re-group meeting
+•	Bring up any blocking issues after 20 minutes of spinning your wheels
+•	Meeting 2: (After lunch regroup) At 2:30pm have re-group meeting where you check-in with blockers, status updates and plan for EOD merge
+  o	Limit to 15 minutes
+•	Meeting 3: Immediately prior to end of day make applicable push/pull requests, review each other’s code and merge into master
+  o	10 minutes before EOD
+  o	Day 1: more time
+
+Team expectations
+•	Each of us reserves the rights to our nights and weekends, and we have all been straightforward about when and how we can commit to working on the project
+•	If you have a blocking issue, slack before interrupting another’s train of coding-thought
+•	We will assign tasks vertically (instead of horizontally)
+•	None of us will specialize in terms of front-end and back-end code
+•	Don’t interrupt - raise your hand
+•	Share the mic
+•	Disagree often and discuss -- argue infrequently
+•	At least message the group when you change what you are working on
+
+Issues
+•	If the group is divided on a certain decision we will take the following steps:
+  o	Take 5 minutes for independent research then discuss. If we cannot reach agreement, bring on fellow/instructor as final decision maker.
+•	If you are frustrated
+  o	Voice it sooner than later to avoid the eventual explosion. So leave a time slot in daily stand ups for “getting things off your chest”.
+  o	In the moment and it’s a little too much, ask for a 5-minute break. 
+•	If you are stuck
+  o	Set a 20-minute timer and then if you’re stuck, reach out to the team for help.
+
+
+
 # FS-App-Template
 
 ## Setup
-.
+
 To use this as boilerplate, you'll need to take the following steps:
 
 * Don't fork or clone this repo! Instead, create a new, empty
