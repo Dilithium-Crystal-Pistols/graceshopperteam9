@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {authenticate} from '../store'
+import {authSignUp} from '../store'
 
 /**
  * COMPONENT
  */
-const AuthForm = props => {
+const SignUpForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
@@ -76,15 +76,14 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
       const fName = evt.target.fName.value
       const lName = evt.target.lName.value
       const email = evt.target.email.value
       const address = evt.target.address.value
       const username = evt.target.username.value
       const password = evt.target.password.value
-      dispatch(authenticate(fName, lName, email, address, username, password, formName))
+      dispatch(authSignUp(username, password, fName, lName, email, address))
     }
   }
 }
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignUpForm)
