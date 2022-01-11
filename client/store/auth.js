@@ -46,7 +46,7 @@ export const authSignUp = (username, password, fName, lName, email, address) => 
   try {
     const res = await axios.post(`/auth/signup`, {username, password, fName, lName, email, address})
     window.localStorage.setItem(TOKEN, res.data.token)
-    dispatch(setSignUp())
+    dispatch(me())
   } catch (authError) {
     return dispatch(setAuth({error: authError}))
   }
