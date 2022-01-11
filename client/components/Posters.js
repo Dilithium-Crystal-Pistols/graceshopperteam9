@@ -8,25 +8,30 @@ export class Posters extends React.Component{
     }
 
     componentDidMount() {
-        console.log("////////",this.props);
-        this.props.fetchPosters()
+        this.props.fetchPosters();
     }
 
     render() {
         return (
             <div>
+                <div id="poster-list">
+
                 {this.props.posters.map((poster) => {
                     return (
                         <div key={poster.id}>
-                            <h3>
+                            
+                            <img src={poster.imageUrl}></img>
+                            <h2>
                                 {poster.name}
-                                {console.log(poster)}
-
-                            </h3>
+                            </h2>
+                            
+                            <h2>
+                                Price:{poster.price}
+                            </h2>
                         </div>
                     )
                 })}
-
+                </div>
                 
             </div>
         )

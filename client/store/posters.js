@@ -28,7 +28,7 @@ export const fetchPosters =  () => {
 export default function(state = [], action) {
     switch (action.type) {
         case SET_POSTERS:
-        return [...state,action.posters]
+        return action.posters
     default:
         return state
     };
