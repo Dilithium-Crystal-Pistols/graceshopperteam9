@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 router.get('/:posterId', async (req, res) => {
     try {
         const myPoster = await Poster.findByPk(req.params.posterId);
+        console.log('LOGGING myPoster: ', myPoster)
         res.send(myPoster)
     } catch (error) {
         console.log(error);
