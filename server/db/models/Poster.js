@@ -33,5 +33,13 @@ module.exports = db.define('poster', {
             notEmpty:true,
         },
         allowNull:false
-    }
+    },
+
+    productType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
+    },
 });
