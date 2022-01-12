@@ -1,11 +1,13 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Login } from "./components/AuthForm";
-import { Signup } from "./components/SignUpForm";
-import Home from "./components/Home";
-import { me } from "./store";
-import Posters from "./components/Posters";
+
+import React, {Component, Fragment} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+import { Login } from './components/AuthForm';
+import { Signup } from './components/SignUpForm'
+import Home from './components/Home';
+import { me } from './store'
+import  Posters  from './components/Posters';
+import GuessHomePage from './components/GuessHomePage';
 import SinglePoster from "./components/SinglePoster";
 
 /**
@@ -24,17 +26,17 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Redirect to="/home" />
-            <Route exact path="/posters" component={Posters} />
+            <Route path ="/posters" component={Posters}/>
             <Route path="/posters/:posterId" component={SinglePoster} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path='/' exact component={GuessHomePage} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/home" component={GuessHomePage} />
             <Route exact path="/posters" component={Posters} />
-            <Route path="/posters/:posterId" component={SinglePoster} />
+            <Route path="/posters/:posterId" component={SinglePoster}
           </Switch>
         )}
       </div>
