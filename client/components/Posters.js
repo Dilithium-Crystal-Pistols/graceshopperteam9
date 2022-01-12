@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchPosters } from '../store/posters'
+import { Link } from "react-router-dom";
 
 export class Posters extends React.Component{
     constructor(props) {
@@ -19,8 +20,9 @@ export class Posters extends React.Component{
                 {this.props.posters.map((poster) => {
                     return (
                         <div key={poster.id}>
-                            
+                            <Link to={`/posters/${poster.id}`}>
                             <img src={poster.imageUrl}></img>
+                            </Link>
                             <h2>
                                 {poster.name}
                             </h2>

@@ -1,10 +1,18 @@
+<<<<<<< HEAD
+=======
 #Notes: https://docs.google.com/document/d/19-e5uiifU9H_oLUh4jaOFUDUgrd6YLEfs1JyPfdW0Yg/edit?usp=sharing
 
+>>>>>>> 9ce2c6b785332ffd5833db22c41f418da2733d03
 #Team-Contract
 
 Roles
 * Taskmaster
+<<<<<<< HEAD
+* Gitmaster
+* Testmaster (writes out test specs?)
+=======
 * Testmaster/Gitmaster (Extra work each day for that person: at EOD this person will test that features are working properly and merge/push to main)
+>>>>>>> 9ce2c6b785332ffd5833db22c41f418da2733d03
 
 Daily process
 * Meeting 1: Morning standup started by yesterday's Taskmaster
@@ -17,7 +25,11 @@ Daily process
   * Allow for independent time – ask for 10 minutes to start to look at it individually
 * Record issues that are non-blocking and discuss right after lunch at re-group meeting
 * Bring up any blocking issues after 20 minutes of spinning your wheels
+<<<<<<< HEAD
+* Meeting 2: (After lunch regroup) At 2:30pm have re-group meeting where you check-in with blockers, status updates and plan for EOD merge
+=======
 * Meeting 2: (After lunch regroup) At 2:30pm have re-group meeting where you check-in with status updates, blockers, and plan for EOD merge
+>>>>>>> 9ce2c6b785332ffd5833db22c41f418da2733d03
   * Limit to 15 minutes
 * Meeting 3: Immediately prior to end of day make applicable push/pull requests, review each other’s code and merge into master
   * 10 minutes before EOD
@@ -43,6 +55,10 @@ Issues
   * Set a 20-minute timer and then if you’re stuck, reach out to the team for help.
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9ce2c6b785332ffd5833db22c41f418da2733d03
 # FS-App-Template
 
 ## Setup
