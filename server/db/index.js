@@ -6,6 +6,7 @@ const User = require('./models/User')
 const Poster = require('./models/Poster');
 const SuperHero = require('./models/SuperHero');
 const Cart = require('./models/Cart');
+const CartItem = require('./models/CartItem');
 
 //associations could go here!
 
@@ -14,12 +15,18 @@ SuperHero.hasMany(Poster);
 Poster.belongsTo(SuperHero);
 
 //Many-to-Many
-Cart.belongsToMany(Poster, {through: 'Cart_Poster'});
-Poster.belongsToMany(Cart, {through: 'Cart_Poster'});
+CartItem.belongsToMany(Poster, {through: 'CartItem_Poster'});
+Poster.belongsToMany(CartItem, {through: 'CartItem_Poster'});
+
+//One-to-Many
+CartItem.belongsTo(Cart);
+Cart.hasMany(CartItem);
 
 // One-to-One
 Cart.belongsTo(User);
 User.hasOne(Cart);
+
+
 
 //CREATE OUR METHODS
 User.getCart = async function() {
@@ -31,6 +38,15 @@ User.getCart = async function() {
   return cart;
 }
 
+Cart.getItems = async function() {
+  const items = await Cart.findAll({
+    include: [{
+      model: CartItem 
+    }],
+  });
+  return items;
+}
+
 //===================================
 
 module.exports = {
@@ -39,6 +55,7 @@ module.exports = {
     User,
     SuperHero,
     Poster,
-    Cart
+    Cart,
+    CartItem
   },
 }
