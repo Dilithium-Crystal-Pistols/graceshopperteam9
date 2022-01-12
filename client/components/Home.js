@@ -5,7 +5,7 @@ import GuessHomePage from './GuessHomePage'
  * COMPONENT
  */
 export const Home = props => {
-  const {username} = props
+  const {username          } = props
 
   return (
     <div>
