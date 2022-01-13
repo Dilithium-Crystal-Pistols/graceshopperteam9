@@ -5,7 +5,7 @@ const GuessHomePage = () => {
   return (
     <div className="guesshomecontainer">
       <Link to="/posters">
-        <div id="posters"> Posters </div>
+        <div id="posters"> Products </div>
       </Link>
     </div>
   );

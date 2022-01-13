@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-
 module.exports = db.define('cart', {
 
     totalPrice: {
@@ -9,7 +8,7 @@ module.exports = db.define('cart', {
             notEmpty: true
         },
         allowNull: false,
-        defaultValue: 0        
+        defaultValue: 0
     }
 
 })
