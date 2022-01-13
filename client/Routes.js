@@ -9,6 +9,7 @@ import { me } from './store'
 import  Posters  from './components/Posters';
 import GuessHomePage from './components/GuessHomePage';
 import SinglePoster from "./components/SinglePoster";
+import AdminPage from './components/AdminPage';
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path ="/posters" component={Posters}/>
+            <Route path="/admin" component={AdminPage}/>
             <Route path="/posters/:posterId" component={SinglePoster} />
           </Switch>
         ) : (

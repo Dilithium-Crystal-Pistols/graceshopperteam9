@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { fetchPosters } from '../store/posters'
 import { Link } from "react-router-dom";
-
+import { removeProduct } from '../store';
 export class AdminPage extends React.Component{
     constructor(props) {
         super(props)
@@ -15,7 +15,24 @@ export class AdminPage extends React.Component{
     render() {
         return (
             <div className="admin-page">
+             {this.props.posters.map((poster) => {
+                    return (
+                        <div key={poster.id}>
+                            <Link to={`/posters/${poster.id}`}>
+                            <img src={poster.imageUrl}></img>
+                            </Link>
+                            <h2>
+                                {poster.name}
+                            </h2>
 
+                            <h2>
+                                Price:{poster.price}
+                            </h2>
+                            <button>Update</button>
+                            <button onClick={() => this.props.removeProduct(poster.id)}>Delete</button>
+                        </div>
+                    )
+                })}
             </div>
         )
     }
@@ -28,7 +45,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchPosters: () => dispatch(fetchPosters())
+    fetchPosters: () => dispatch(fetchPosters()),
+    removeProduct: (id) => dispatch(removeProduct(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPage);

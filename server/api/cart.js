@@ -6,7 +6,6 @@ const User = require('../db/models/User')
 router.get('/', async(req, res) => {
     try {
         //how do we access the user ??
-
         //Need a find or create request to get said user's cart
         // const userId = await User.findOrCreate()
         // console.log(user)
