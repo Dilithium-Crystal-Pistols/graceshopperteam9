@@ -16,7 +16,6 @@ export class AddPoster extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     };
     componentDidMount() {
-
         console.log(this.props);
     }
     handleChange(event) {
