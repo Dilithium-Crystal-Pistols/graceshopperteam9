@@ -11,6 +11,9 @@ import GuessHomePage from './components/GuessHomePage';
 import SinglePoster from "./components/SinglePoster";
 import AdminPage from './components/AdminPage';
 import UpdateProduct from './components/UpdateProduct';
+import AddPoster from './components/AddPoster';
+
+
 /**
  * COMPONENT
  */
@@ -26,11 +29,13 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+
             <Route path="/home" component={Home} />
             <Route path ="/posters" component={Posters}/>
             <Route path="/admin" component={AdminPage}/>
             <Route path="/posters/:posterId" component={SinglePoster} />
             <Route path="/updateproduct/:id" component={UpdateProduct} />
+            <Route exact path="/add-poster" exact component={AddPoster} />
           </Switch>
         ) : (
           <Switch>
