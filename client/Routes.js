@@ -10,7 +10,7 @@ import  Posters  from './components/Posters';
 import GuessHomePage from './components/GuessHomePage';
 import SinglePoster from "./components/SinglePoster";
 import AdminPage from './components/AdminPage';
-
+import UpdateProduct from './components/UpdateProduct';
 /**
  * COMPONENT
  */
@@ -30,6 +30,7 @@ class Routes extends Component {
             <Route path ="/posters" component={Posters}/>
             <Route path="/admin" component={AdminPage}/>
             <Route path="/posters/:posterId" component={SinglePoster} />
+            <Route path="/updateproduct/:id" component={UpdateProduct} />
           </Switch>
         ) : (
           <Switch>

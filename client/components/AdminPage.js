@@ -28,7 +28,7 @@ export class AdminPage extends React.Component{
                             <h2>
                                 Price:{poster.price}
                             </h2>
-                            <button>Update</button>
+                            <Link to={`/updateproduct/${poster.id}`}><button>Update</button> </Link>
                             <button onClick={() => this.props.removeProduct(poster.id)}>Delete</button>
                         </div>
                     )

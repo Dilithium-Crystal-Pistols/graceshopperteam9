@@ -45,6 +45,7 @@ router.delete('/:posterId', async (req, res) => {
 
 router.put('/:posterId', async (req, res) => {
     try {
+        console.log('this is the body ', req.body)
         const poster = await Poster.findByPk(req.params.posterId);
         res.send(await poster.update(req.body))
     } catch (error) {
