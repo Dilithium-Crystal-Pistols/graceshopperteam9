@@ -25,7 +25,8 @@ router.get('/:posterId', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        res.status(201).send(await Poster.create(req.body))
+        const myPoster = await Poster.create(req.body)
+        res.status(201).send(myPoster)
     } catch (error) {
         console.log(error);
     };
