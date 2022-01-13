@@ -9,7 +9,10 @@ import { me } from './store'
 import  Posters  from './components/Posters';
 import GuessHomePage from './components/GuessHomePage';
 import SinglePoster from "./components/SinglePoster";
+import AdminPage from './components/AdminPage';
+import UpdateProduct from './components/UpdateProduct';
 import AddPoster from './components/AddPoster';
+
 
 /**
  * COMPONENT
@@ -26,9 +29,12 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route exact path ="/posters" component={Posters}/>
-            <Route exact path="/posters/:posterId" exact component={SinglePoster} />
+
+            <Route path="/home" component={Home} />
+            <Route path ="/posters" component={Posters}/>
+            <Route path="/admin" component={AdminPage}/>
+            <Route path="/posters/:posterId" component={SinglePoster} />
+            <Route path="/updateproduct/:id" component={UpdateProduct} />
             <Route exact path="/add-poster" exact component={AddPoster} />
           </Switch>
         ) : (

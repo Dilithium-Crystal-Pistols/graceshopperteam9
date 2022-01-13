@@ -13,11 +13,11 @@ async function seed() {
   // Creating Users
   const users = await Promise.all([
 
-    User.create({ fName: 'John', lName: 'Smith', email: 'john123@gmail.com', address: '3578 Audry St Zip code 11587, Brooklyn NY', username: 'jsmith', password: '123' })
+    User.create({ fName: 'John', lName: 'Smith', email: 'john123@gmail.com', address: '3578 Audry St Zip code 11587, Brooklyn NY', username: 'jsmith', password: '123', isAdmin:false })
   ])
 
 
-  
+
   const superHeros = await Promise.all([
     SuperHero.create({name:"Superman"}),
     SuperHero.create({name:"Batman"})
@@ -35,7 +35,7 @@ async function seed() {
   const carts = await Promise.all([
     Cart.create({ userId: 1})
   ]);
-  
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {

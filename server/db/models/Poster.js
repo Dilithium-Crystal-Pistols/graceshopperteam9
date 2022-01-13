@@ -9,7 +9,7 @@ module.exports = db.define('poster', {
             notEmpty: true,
         }
     },
-    
+
     imageUrl: {
         type: Sequelize.STRING,
         validate: {
@@ -19,7 +19,7 @@ module.exports = db.define('poster', {
     },
 
     price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         validate: {
             notEmpty:true
         },
