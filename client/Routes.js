@@ -36,7 +36,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/home" component={GuessHomePage} />
             <Route exact path="/posters" component={Posters} />
-            <Route path="/posters/:posterId" component={SinglePoster}
+            <Route path="/posters/:posterId" component={SinglePoster}/>
           </Switch>
         )}
       </div>
