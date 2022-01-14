@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateProduct } from "../store";
+import { updateProduct } from "../store/admin";
 
 export class UpdateProduct extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export class UpdateProduct extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    console.log(this.props);
+    console.log(this.props.match.params.id);
   }
   handleChange(event) {
     this.setState({
@@ -26,7 +26,7 @@ export class UpdateProduct extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.updateProduct({ ...this.state });
+    this.props.updateProduct({ ...this.state },this.props.match.params.id);
   }
 
   render() {
@@ -74,9 +74,10 @@ export class UpdateProduct extends React.Component {
   }
 }
 
+
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
-    updateProduct: (product) => dispatch(updateProduct(product, history)),
+    updateProduct: (product,id) => dispatch(updateProduct(product,id)),
   };
 };
 

@@ -35,7 +35,7 @@ class Routes extends Component {
             <Route path="/admin" component={AdminPage}/>
             <Route path="/posters/:posterId" component={SinglePoster} />
             <Route path="/updateproduct/:id" component={UpdateProduct} />
-            <Route exact path="/add-poster" exact component={AddPoster} />
+            <Route exact path="/add-product" exact component={AddPoster} />
           </Switch>
         ) : (
           <Switch>
