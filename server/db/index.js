@@ -28,7 +28,7 @@ User.hasOne(Cart);
 
 
 
-//CREATE OUR METHODS
+//CREATE OUR METHODS HERE
 User.getCart = async function() {
   const cart = await User.findAll({
     include: [{
@@ -41,7 +41,7 @@ User.getCart = async function() {
 Cart.getItems = async function() {
   const items = await Cart.findAll({
     include: [{
-      model: CartItem 
+      model: CartItem
     }],
   });
   return items;
