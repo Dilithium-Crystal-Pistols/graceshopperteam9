@@ -38,3 +38,8 @@ form div {
   background-size: 300px;
 }
 
+.cart {
+  background-color: cornsilk;
+  width: 100%;
+  height: 400px;
+}

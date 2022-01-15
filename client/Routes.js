@@ -12,7 +12,7 @@ import SinglePoster from "./components/SinglePoster";
 import AdminPage from './components/AdminPage';
 import UpdateProduct from './components/UpdateProduct';
 import AddPoster from './components/AddPoster';
-
+import Cart from './components/Cart';
 
 /**
  * COMPONENT
@@ -36,6 +36,7 @@ class Routes extends Component {
             <Route path="/posters/:posterId" component={SinglePoster} />
             <Route path="/updateproduct/:id" component={UpdateProduct} />
             <Route exact path="/add-poster" exact component={AddPoster} />
+            <Route path="/cart" component={Cart}/>
           </Switch>
         ) : (
           <Switch>
@@ -45,6 +46,7 @@ class Routes extends Component {
             <Route path="/home" component={GuessHomePage} />
             <Route exact path="/posters" component={Posters} />
             <Route path="/posters/:posterId" component={SinglePoster}/>
+            <Route path="/cart" component={Cart}/>
           </Switch>
         )}
       </div>

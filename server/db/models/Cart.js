@@ -3,7 +3,7 @@ const db = require('../db')
 module.exports = db.define('cart', {
 
     totalPrice: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER,
         validate: {
             notEmpty: true
         },

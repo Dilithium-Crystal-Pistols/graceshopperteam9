@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
 router.get('/:posterId', async (req, res) => {
     try {
         const myPoster = await Poster.findByPk(req.params.posterId);
-        console.log('LOGGING myPoster: ', myPoster)
         res.send(myPoster)
     } catch (error) {
         console.log(error);
@@ -46,7 +45,6 @@ router.delete('/:posterId', async (req, res) => {
 
 router.put('/:posterId', async (req, res) => {
     try {
-        console.log('this is the body ', req.body)
         const poster = await Poster.findByPk(req.params.posterId);
         res.send(await poster.update(req.body))
     } catch (error) {
