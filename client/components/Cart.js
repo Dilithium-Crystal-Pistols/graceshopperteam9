@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { fetchPosters } from '../store';
 import { updateCart, removeFromCart } from '../store';
 import { Link } from "react-router-dom";
 
@@ -20,41 +21,31 @@ export class Cart extends React.Component{
     render() {
         return (
             <div className='cart'>
+
               <div className='cart_product'>
                 <div className='cart_image'>
-                  <img></img>
+                  image here
+                  <img />
                 </div>
-                <p>product name</p>
-                <p>product price</p>
-                <button>-</button>
-                <button>+</button>
-                <button>X</button>
+                <div className='cart_item_info'>
+                  <p>product name</p>
+                  <p>product price</p>
+                  <div className='cart_item_qty'>
+                    <p>Qty NumberHere</p>
+                    <button>-</button>
+                    <button>+</button>
+                    <button>X</button>
+                  </div>
+                </div>
               </div>
-              <p>Total: productprice</p>
 
-              <form onSubmit={() => this.handleSubmit(evt)}>
-                <button type='submit'>checkout</button>
-              </form>
-                {/* <div id="poster-list">
 
-                {this.props.posters.map((poster) => {
-                    return (
-                        <div key={poster.id}>
-                            <Link to={`/posters/${poster.id}`}>
-                            <img src={poster.imageUrl}></img>
-                            </Link>
-                            <h2>
-                                {poster.name}
-                            </h2>
-
-                            <h2>
-                                Price:{poster.price}
-                            </h2>
-                        </div>
-                    )
-                })}
-                </div> */}
-
+              <div className='cartFooter'>
+                <p>Total: cartPrice</p>
+                <form onSubmit={() => this.handleSubmit(evt)}>
+                  <button type='submit'>checkout</button>
+                </form>
+              </div>
             </div>
         )
     }
