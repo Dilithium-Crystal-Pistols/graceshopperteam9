@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const GuessHomePage = () => {
+const GuestHomePage = () => {
   return (
-    <div className="guesshomecontainer">
+    <div className="guesthomecontainer">
       <Link to="/posters">
         <div id="posters"> Posters </div>
       </Link>
@@ -11,4 +11,4 @@ const GuessHomePage = () => {
   );
 };
 
-export default GuessHomePage;
+export default GuestHomePage;

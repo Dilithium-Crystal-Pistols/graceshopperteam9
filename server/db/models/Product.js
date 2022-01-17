@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-module.exports = db.define('poster', {
+module.exports = db.define('product', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -18,8 +18,9 @@ module.exports = db.define('poster', {
         defaultValue:"https://buildyourspechere.com/wp-content/uploads/2020/10/placeholder-image-person-jpg-300x248.jpg"
     },
 
+
     price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.INTEGER, // reflects price in pennies
         validate: {
             notEmpty:true
         },
