@@ -9,6 +9,8 @@ export class SingleProduct extends React.Component {
 
  componentDidMount() {
       try{
+        const token = window.localStorage.token;
+        console.log('///////////////', JSON.parse(window.localStorage.getItem(token)));
         this.props.fetchSingleProduct(this.props.match.params.productId);
       } catch (err) {
           console.log(err);
