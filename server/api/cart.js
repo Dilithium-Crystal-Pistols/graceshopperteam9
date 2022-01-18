@@ -31,7 +31,22 @@ router.get("/:cartId", async (req, res) => {
     console.log(error);
   }
 });
+
+router.delete('/:cartId/:productId', async (req, res) => {
+    const cart = await Cart.findByPk(req.params.cartId);
+    const cartItems = await CartItem.findOne({
+        where: {
+            cartId: cart.id,
+            productId: req.params.productId
+        }
+    });
+    await cartItems.destroy()
+    res.sendStatus(200).redirect('/:cartId')
+
     
+});
+
+
 
 module.exports = router;
 
