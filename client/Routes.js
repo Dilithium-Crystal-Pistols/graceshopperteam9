@@ -6,9 +6,13 @@ import { Login } from './components/AuthForm';
 import { Signup } from './components/SignUpForm'
 import Home from './components/Home';
 import { me } from './store'
-import  Posters  from './components/Posters';
-import GuessHomePage from './components/GuessHomePage';
-import SinglePoster from "./components/SinglePoster";
+import  Products  from './components/Products';
+import GuestHomePage from './components/GuestHomePage';
+import SingleProduct from "./components/SingleProduct";
+import AdminPage from './components/AdminPage';
+import UpdateProduct from './components/UpdateProduct';
+import AddProduct from './components/AddProduct';
+
 
 /**
  * COMPONENT
@@ -25,18 +29,22 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+
             <Route path="/home" component={Home} />
-            <Route path ="/posters" component={Posters}/>
-            <Route path="/posters/:posterId" component={SinglePoster} />
+            <Route exact path ="/products" component={Products}/>
+            <Route path="/admin" component={AdminPage}/>
+            <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/updateproduct/:id" component={UpdateProduct} />
+            <Route exact path="/add-product" exact component={AddProduct} />
           </Switch>
         ) : (
           <Switch>
-            <Route path='/' exact component={GuessHomePage} />
+            <Route path='/' exact component={GuestHomePage} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/home" component={GuessHomePage} />
-            <Route exact path="/posters" component={Posters} />
-            <Route path="/posters/:posterId" component={SinglePoster}/>
+            <Route path="/home" component={GuestHomePage} />
+            <Route exact path="/products" component={Products} />
+            <Route path="/products/:productId" component={SingleProduct}/>
           </Switch>
         )}
       </div>

@@ -1,15 +1,16 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-
 module.exports = db.define('cart', {
 
-    totalPrice: {
-        type: Sequelize.FLOAT,
+    //true = yes currently in progress
+    //false = completed order
+    inProgress: {
+        type: Sequelize.BOOLEAN,
         validate: {
             notEmpty: true
         },
-        allowNull: false,
-        defaultValue: 0        
+        allowNull:false,
+        defaultValue: true
     }
 
 })
