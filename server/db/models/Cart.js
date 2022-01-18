@@ -3,15 +3,15 @@ const db = require('../db')
 
 module.exports = db.define('cart', {
 
-    //Yes currently in progress = 1
-    //Order already complete = 0
+    //true = yes currently in progress
+    //false = completed order
     inProgress: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BOOLEAN,
         validate: {
             notEmpty: true
         },
         allowNull:false,
-        defaultValue: 1
+        defaultValue: true
     }
 
 })

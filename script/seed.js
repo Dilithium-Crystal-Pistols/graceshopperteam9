@@ -109,32 +109,32 @@ async function seed() {
   ]);
 
   const carts = await Promise.all([
-    Cart.create({ userId: 1, inProgress: 1 }),
-    Cart.create({ userId: 2, inProgress: 0 }),
+    Cart.create({ userId: 1, inProgress: true }),
+    Cart.create({ userId: 2, inProgress: false }),
   ]);
 
   const cartItems = await Promise.all([
     CartItem.create({
       quantity: 2,
-      priceAtCheckout: 20,
+      //priceAtCheckout: 20,
       productId: 1,
       cartId: 1,
     }),
     CartItem.create({
       quantity: 1,
-      priceAtCheckout: 20,
+      //priceAtCheckout: 20,
       productId: 3,
       cartId: 1,
     }),
     CartItem.create({
       quantity: 1,
-      priceAtCheckout: 21,
+      //priceAtCheckout: 21,
       productId: 2,
       cartId: 2,
     }),
     CartItem.create({
       quantity: 3,
-      priceAtCheckout: 23,
+      //priceAtCheckout: 23,
       productId: 6,
       cartId: 2,
     }),
