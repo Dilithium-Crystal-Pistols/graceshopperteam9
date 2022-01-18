@@ -14,13 +14,13 @@ export class Products extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="product_container">
         <div id="product-list">
           {this.props.products.map((product) => {
             return (
-              <div key={product.id}>
+              <div className='posters_product' key={product.id}>
                 <Link to={`/products/${product.id}`}>
-                  <img src={product.imageUrl}></img>
+                  <img className="product-image" src={product.imageUrl}></img>
                 </Link>
                 <h2>{product.name}</h2>
 

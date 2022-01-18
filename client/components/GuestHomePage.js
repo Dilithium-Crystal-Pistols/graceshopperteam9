@@ -1,14 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const GuestHomePage = () => {
+const GuessHomePage = () => {
   return (
-    <div className="guesthomecontainer">
-      <Link to="/products">
-        <div id="products"> Products </div>
-      </Link>
+    <div className="homecontainer">
+      <div className="home_header">
+        <Link to="/products">
+          <h2>Shop Now</h2>
+        </Link>
+      </div>
+
+      <div className="home_products">
+        <Link to="/products">
+          <div id="products"> Products </div>
+        </Link>
+
+        <Link to="/products">
+          <div id="products"> Products </div>
+        </Link>
+
+        <Link to="/products">
+          <div id="products"> Products </div>
+        </Link>
+
+        <Link to="/products">
+          <div id="products"> Products </div>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default GuestHomePage;
+export default GuessHomePage;

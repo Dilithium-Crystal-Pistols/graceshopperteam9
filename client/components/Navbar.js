@@ -1,14 +1,16 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../store";
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>The Super Store</h1>
-    <nav>
-    <Link to="/home">Home</Link>
-    <Link to="/products">Products</Link>
+const Navbar = ({ handleClick, isLoggedIn }) => (
+  <div className="nav_bar">
+    <h1>
+      <Link to="/home">The Super Store</Link>
+    </h1>
+    <nav className="nav_bar-links">
+      <Link to="/home">Home</Link>
+      <Link to="/products">Products</Link>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -24,25 +26,24 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
     </nav>
-    <hr />
   </div>
-)
+);
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.id
-  }
-}
+    isLoggedIn: !!state.auth.id,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(logout())
-    }
-  }
-}
+      dispatch(logout());
+    },
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);
