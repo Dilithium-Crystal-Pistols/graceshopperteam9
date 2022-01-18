@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchPosters } from "../store/posters";
+import { fetchProducts } from "../store/products";
 import { Link } from "react-router-dom";
 import { removeProduct } from "../store";
 export class AdminPage extends React.Component {
@@ -9,28 +9,28 @@ export class AdminPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchPosters();
+        this.props.fetchProducts();
     }
 
     render() {
         return (
             <div className="admin-page">
-                {this.props.posters.map((poster) => {
+                {this.props.products.map((product) => {
                     return (
-                        <div key={poster.id}>
+                        <div key={product.id}>
                             <div>
                                 <Link to='/add-product'> Add a Product</Link>
                             </div>
-                            <Link to={`/posters/${poster.id}`}>
-                                <img src={poster.imageUrl}></img>
+                            <Link to={`/products/${product.id}`}>
+                                <img src={product.imageUrl}></img>
                             </Link>
-                            <h2>{poster.name}</h2>
+                            <h2>{product.name}</h2>
 
-                            <h2>Price:{poster.price}</h2>
-                            <Link to={`/updateproduct/${poster.id}`}>
+                            <h2>Price:{product.price}</h2>
+                            <Link to={`/updateproduct/${product.id}`}>
                                 <button>Update</button>{" "}
                             </Link>
-                            <button onClick={() => this.props.removeProduct(poster.id)}>
+                            <button onClick={() => this.props.removeProduct(product.id)}>
                                 Delete
                             </button>
                         </div>
@@ -43,12 +43,12 @@ export class AdminPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        posters: state.posters,
+        products: state.products,
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchPosters: () => dispatch(fetchPosters()),
+    fetchProducts: () => dispatch(fetchProducts()),
     removeProduct: (id) => dispatch(removeProduct(id)),
 });
 

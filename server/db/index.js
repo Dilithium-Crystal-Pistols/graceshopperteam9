@@ -31,9 +31,9 @@ Product.belongsToMany(Cart, {
 // CartItem.belongsTo(Cart);
 // Cart.hasMany(CartItem);
 
-// One-to-One
+// One-to-Many
 Cart.belongsTo(User);
-User.hasOne(Cart);
+User.hasMany(Cart);
 
 //CREATE OUR METHODS
 User.getCart = async function () {
