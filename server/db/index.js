@@ -1,51 +1,62 @@
 //this is the access point for all things database related!
 
-const db = require('./db')
+const db = require("./db");
 
-const User = require('./models/User')
-const Poster = require('./models/Poster');
-const SuperHero = require('./models/SuperHero');
-const Cart = require('./models/Cart');
-const CartItem = require('./models/CartItem');
+const User = require("./models/User");
+const Product = require("./models/Product");
+const SuperHero = require("./models/SuperHero");
+const Cart = require("./models/Cart");
+const CartItem = require("./models/CartItem");
 
 //associations could go here!
 
 //One-to-Many
-SuperHero.hasMany(Poster);
-Poster.belongsTo(SuperHero);
+SuperHero.hasMany(Product);
+Product.belongsTo(SuperHero);
 
 //Many-to-Many
-CartItem.belongsToMany(Poster, {through: 'CartItem_Poster'});
-Poster.belongsToMany(CartItem, {through: 'CartItem_Poster'});
+Cart.belongsToMany(Product, {
+  through: {
+    model: CartItem,
+  },
+});
+
+Product.belongsToMany(Cart, {
+  through: {
+    model: CartItem,
+  },
+});
 
 //One-to-Many
-CartItem.belongsTo(Cart);
-Cart.hasMany(CartItem);
+// CartItem.belongsTo(Cart);
+// Cart.hasMany(CartItem);
 
 // One-to-One
 Cart.belongsTo(User);
 User.hasOne(Cart);
 
-
-
 //CREATE OUR METHODS
-User.getCart = async function() {
+User.getCart = async function () {
   const cart = await User.findAll({
-    include: [{
-      model: Cart
-    }],
+    include: [
+      {
+        model: Cart,
+      },
+    ],
   });
   return cart;
-}
+};
 
-Cart.getItems = async function() {
+Cart.getItems = async function () {
   const items = await Cart.findAll({
-    include: [{
-      model: CartItem 
-    }],
+    include: [
+      {
+        model: CartItem,
+      },
+    ],
   });
   return items;
-}
+};
 
 //===================================
 
@@ -54,8 +65,8 @@ module.exports = {
   models: {
     User,
     SuperHero,
-    Poster,
+    Product,
     Cart,
-    CartItem
+    CartItem,
   },
-}
+};
