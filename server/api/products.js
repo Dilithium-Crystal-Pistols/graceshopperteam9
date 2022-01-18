@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const CartItem = require("../db/models/CartItem");
 const Product = require("../db/models/Product");
 
 router.get("/", async (req, res) => {
@@ -40,6 +41,18 @@ router.delete("/:productId", async (req, res) => {
     console.log(error);
   }
 });
+
+// router.post("/:productId", async(req, res) => {
+//   try{
+//     newCartItem = await CartItem.create({
+//       quantity: quantity++,
+//       productId: req.params.productId,
+//       cartId
+//     })
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 
 router.put('/:productId', async (req, res) => {

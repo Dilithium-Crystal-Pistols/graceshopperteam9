@@ -9,37 +9,31 @@ const User = require("../db/models/User");
 //price, name, quantity
 router.get("/:cartId", async (req, res) => {
   try {
+
     const cart = await Cart.findByPk(req.params.cartId);
-    const cartItems = await CartItem.findAll({
-      where: {
-        cartId: cart.id,
-      },
-    });
-    const products = await Product.findAll({
-      include: [
-        {
-          model: Cart,
-          where: {
-            id: cart.id,
-          },
-        },
-      ],
-    });
-    // const currentCart = {
-    //     userId: cart.userId,
-    //     products: products,
-    //     cartItems: cartItems
-    // }
-
-    //console.log("finalCart: ", currentCart);
-
-    console.log(products[0].product)
-    //const products = await cart.getProducts();
-    //console.log("PRODUCTS: ", products[0].product)
-    //console.log("CART PROTOTYPE: ", Cart.prototype)
+    const products = await cart.getProducts();
+    let currentCart = [];
+    for (let i = 0; i < products.length; i++) {
+        currentCart.push({
+             userId: cart.userId,
+             cartId: cart.id,
+             productId: products[i].dataValues.id,
+             name: products[i].dataValues.name,
+             imageUrl: products[i].dataValues.imageUrl,
+             price: products[i].dataValues.price,
+             description: products[i].dataValues.description,
+             productType: products[i].dataValues.productType,
+             quantity: products[i].dataValues.cartItem.quantity
+        })
+    }
+    res.send(currentCart);
   } catch (error) {
     console.log(error);
   }
 });
+    
 
 module.exports = router;
+
+
+
