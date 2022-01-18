@@ -41,13 +41,23 @@ router.delete("/:productId", async (req, res) => {
   }
 });
 
-router.put("/:productId", async (req, res) => {
+
+router.put('/:productId', async (req, res) => {
   try {
-    const product = await Product.findByPk(req.params.productId);
-    res.send(await product.update(req.body));
+      console.log('this is the body ', req.body)
+      const product = await Product.findByPk(req.params.productId);   
+      console.log("this the Product",product);
+      res.send(await product.update({
+          name: req.body.name,
+          price: Number(req.body.price),
+          description: req.body.description,
+          imageUrl: req.body.imageUrl,
+          productType:req.body.productType
+      }))
+      console.log("after presumed update",product);
   } catch (error) {
-    console.log(error);
-  }
+      console.log(error);
+  };
 });
 
 module.exports = router;

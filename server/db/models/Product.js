@@ -9,7 +9,7 @@ module.exports = db.define('product', {
             notEmpty: true,
         }
     },
-    
+
     imageUrl: {
         type: Sequelize.STRING,
         validate: {
@@ -20,7 +20,7 @@ module.exports = db.define('product', {
 
 
     price: {
-        type: Sequelize.INTEGER, // reflects price in pennies
+        type: Sequelize.INTEGER,
         validate: {
             notEmpty:true
         },

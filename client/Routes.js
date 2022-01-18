@@ -9,6 +9,10 @@ import { me } from './store'
 import  Products  from './components/Products';
 import GuestHomePage from './components/GuestHomePage';
 import SingleProduct from "./components/SingleProduct";
+import AdminPage from './components/AdminPage';
+import UpdateProduct from './components/UpdateProduct';
+import AddProduct from './components/AddProduct';
+
 
 /**
  * COMPONENT
@@ -25,9 +29,13 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+
             <Route path="/home" component={Home} />
             <Route exact path ="/products" component={Products}/>
+            <Route path="/admin" component={AdminPage}/>
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/updateproduct/:id" component={UpdateProduct} />
+            <Route exact path="/add-product" exact component={AddProduct} />
           </Switch>
         ) : (
           <Switch>

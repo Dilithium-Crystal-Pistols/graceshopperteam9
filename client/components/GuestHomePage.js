@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const GuestHomePage = () => {
   return (
     <div className="guesthomecontainer">
-      <Link to="/posters">
-        <div id="posters"> Posters </div>
+      <Link to="/products">
+        <div id="products"> Products </div>
       </Link>
     </div>
   );
