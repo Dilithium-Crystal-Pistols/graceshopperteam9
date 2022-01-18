@@ -47,6 +47,18 @@ Cart.getItems = async function() {
   return items;
 }
 
+Cart.findByUser = async function(user) {
+  return this.findAll({
+    include: [{
+      model: User,
+      as: 'user',
+      where: {
+        id: user.id
+      }
+    }]
+  })
+}
+
 //===================================
 
 module.exports = {

@@ -12,24 +12,43 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-
-    User.create({ fName: 'John', lName: 'Smith', email: 'john123@gmail.com', address: '3578 Audry St Zip code 11587, Brooklyn NY', username: 'jsmith', password: '123', isAdmin:false })
-  ])
+    User.create({
+      fName: "John",
+      lName: "Smith",
+      email: "john123@gmail.com",
+      address: "3578 Audry St Zip code 11587, Brooklyn NY",
+      username: "jsmith",
+      password: "123",
+      isAdmin: false,
+    }),
+  ]);
 
 
 
   const superHeros = await Promise.all([
-    SuperHero.create({name:"Superman"}),
-    SuperHero.create({name:"Batman"})
-  ])
+    SuperHero.create({ name: "Superman" }),
+    SuperHero.create({ name: "Batman" }),
+  ]);
   const posters = await Promise.all([
-    Poster.create({ name: "Superman", price: 20.00, description: "literally Superman",superheroId:1, productType: 'Poster'}),
-    Poster.create({ name: "Batman", price: 22.00, description: "literally Batman",superheroId:2, productType: 'Poster' })
+    Poster.create({
+      name: "Superman",
+      price: 20.0,
+      description: "literally Superman",
+      superheroId: 1,
+      productType: "Poster",
+    }),
+    Poster.create({
+      name: "Batman",
+      price: 22.0,
+      description: "literally Batman",
+      superheroId: 2,
+      productType: "Poster",
+    }),
   ]);
 
   const cartItems = await Promise.all([
-    CartItem.create({ quantity: 2}),
-    CartItem.create({ quantity: 1})
+    CartItem.create({ quantity: 2 }),
+    CartItem.create({ quantity: 1 }),
   ]);
 
   const carts = await Promise.all([

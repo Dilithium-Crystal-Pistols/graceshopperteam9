@@ -8,7 +8,7 @@ import singlePoster from './singlePoster'
 import admin from './admin'
 import cart from './cart'
 
-const reducer = combineReducers({ auth,posters, singlePoster, admin, cart })
+const reducer = combineReducers({ auth, posters, singlePoster, admin, cart })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

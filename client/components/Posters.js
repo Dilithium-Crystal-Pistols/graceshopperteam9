@@ -14,19 +14,19 @@ export class Posters extends React.Component{
 
     render() {
         return (
-            <div>
+            <div className='posters_container'>
                 <div id="poster-list">
 
                 {this.props.posters.map((poster) => {
                     return (
-                        <div key={poster.id}>
+                        <div className='posters_product' key={poster.id}>
                             <Link to={`/posters/${poster.id}`}>
-                            <img src={poster.imageUrl}></img>
+                              <img className='posters_product-image' src={poster.imageUrl}></img>
                             </Link>
                             <h2>
                                 {poster.name}
                             </h2>
-                            
+
                             <h2>
                                 Price:{poster.price}
                             </h2>
@@ -34,7 +34,7 @@ export class Posters extends React.Component{
                     )
                 })}
                 </div>
-                
+
             </div>
         )
     }

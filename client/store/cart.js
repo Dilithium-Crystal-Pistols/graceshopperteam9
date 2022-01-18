@@ -4,7 +4,7 @@ import history from "../history";
 const ADD_TO_CART= "ADD_TO_CART";
 const REMOVE_FROM_CART= "REMOVE_FROM_CART";
 const UPDATE_CART = "UPDATE_CART";
-const GET_CART_ITEMS = "GET_CART_ITEMS"
+const SET_CART_ITEMS = "SET_CART_ITEMS"
 
 
 export const addToCart = (poster) => {
@@ -29,9 +29,9 @@ export const updateCart = (poster, quantity) => {
   };
 };
 
-export const getCarItems = (poster) => {
+export const setCarItems = (poster) => {
   return {
-    type: GET_CART_ITEMS,
+    type: SET_CART_ITEMS,
     poster
   }
 }
@@ -52,39 +52,76 @@ export const updateCartThunk = (posterId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`/api/cart/${posterId}`);
-      dispatch(addToCart(data));
+      dispatch(updateCart(data));
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const getCartItemsThunk = (posterId) => {
+export const setCartItemsThunk = (posterId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/cart/${posterId}`);
-      dispatch(addToCart(data));
+      dispatch(setCarItems(data));
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export default (state = [], action) => {
+//initialize the state to the items in the localcart from localstorage
+const initialState = {
+  products: [
+    {
+      name: "Superman",
+      price: 20.0,
+      description: "literally Superman",
+      superheroId: 1,
+      productType: "Poster",
+      image: ""
+    },
+    {
+      name: "Batman",
+      price: 22.0,
+      description: "literally Superman",
+      superheroId: 2,
+      productType: "Poster",
+      image: "",
+    },
+    {
+      name: "wonderwoman",
+      price: 22.0,
+      description: "literally wonderwoman",
+      superheroId: 3,
+      productType: "Poster",
+      image: "",
+    }
+  ],
+  itemsInCart: [
+    { superheroId: 2, qty: 3, price: 22},
+    { superheroId: 3, qty: 1, price: 25}
+  ],
+  total: 0
+
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const itemToAdd = state.filter((item) => item.id === action.poster.id)
-      //if it's already in the cart i want to increment the quantity by 1
-
-        // if not add it to the cart
-      console.log(itemToAdd)
-      return [...state, action.poster];
+      const alreadyIncart = state.itemsInCart.find((item) => item.superheroId === action.poster.id)
+      if(alreadyIncart) {
+        state.alreadyIncart.filter((item) => item.id === action.posterId).map((item) => item.qty++)
+        return {...state }
+      } else {
+        return {...state }
+      }
     case REMOVE_FROM_CART:
-      return state.filter((item) => poster.id !== action.poster.id);
+      return state.itemsInCart.filter((item) => poster.id !== action.poster.id);
     case UPDATE_CART:
       return state.filter((item) => poster.id !== action.poster.id);
-    case GET_CART_ITEMS:
-        return [...state];
+    case SET_CART_ITEMS:
+        return {...state};
     default:
       return state;
   }

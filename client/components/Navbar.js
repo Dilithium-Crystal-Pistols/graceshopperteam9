@@ -3,12 +3,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>The Super Store</h1>
-    <nav>
-    <Link to="/home">Home</Link>
-    <Link to="/posters">Posters</Link>
+const Navbar = ({ handleClick, isLoggedIn }) => (
+  <div className="nav_bar">
+    <h1><Link to="/home">The Super Store</Link></h1>
+    <nav className='nav_bar-links'>
+      <Link to="/home">Home</Link>
+      <Link to="/posters">Posters</Link>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
@@ -24,9 +24,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
     </nav>
-    <hr />
   </div>
-)
+);
 
 /**
  * CONTAINER

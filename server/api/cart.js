@@ -3,13 +3,11 @@ const Cart = require('../db/models/Cart');
 const CartItem = require('../db/models/CartItem');
 const User = require('../db/models/User');
 
-
 const router = require('express').Router();
 router.get('/', async(req, res) => {
     try {
 
-        const cartItems = await CartItem.findAll()
-        res.send("Hello From Cart")
+        res.send("Hello from cart")
         // res.send({ token: await User.authenticate(req.body)});
         //how do we access the user ??
         //Need a find or create request to get said user's cart
@@ -23,6 +21,13 @@ router.get('/', async(req, res) => {
     }
     })
 
+router.get("/:id", async (req, res) => {
+  try {
+    console.log("car items hit");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.post('/:id', async(req, res) => {
     try {
