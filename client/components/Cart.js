@@ -7,15 +7,14 @@ export class Cart extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     this.props.fetchCart(this.props.match.params.cartId);
   }
 
   render() {
-    console.log(this.props.cartItems);
+    console.log('lala', this.props.cartItems)
     return (
-      // <div>HELLO WORLD</div>
-      <div>
       <div className='cart' id ='cart'>
           {this.props.cartItems.map((cartItem) => {
             return (
@@ -27,7 +26,6 @@ export class Cart extends React.Component {
             );
           })}
         </div>
-        </div> 
     );
   }
 }
@@ -39,4 +37,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchCart: (cartId) => dispatch(fetchCart(cartId)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -89,7 +89,7 @@ nav a:hover {
 /*------------------  HOME / GUESS HOME CONTAINER END  -------------- */
 
 
-/*------------------  POSTERS START  -------------- */
+/*------------------  PRODUCT START  -------------- */
 
 .product_container {
   display: flex;
@@ -100,6 +100,7 @@ nav a:hover {
 
 #product-list {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
   padding: 2rem;
@@ -113,6 +114,7 @@ nav a:hover {
   width: 200px;
   background-color: rgb(216, 222, 230);
   border-radius: 1rem;
+  flex-grow: 3;
 }
 .product-image {
   display: flex;
@@ -128,10 +130,10 @@ nav a:hover {
   background-image: url("batman.jpeg");
   background-size: 300px;
 }
-/*------------------  POSTERS END  -------------- */
+/*------------------  PRODUCT END  -------------- */
 
-/*------------------  SINGLE POSTER START  -------------- */
-.singlePoster_container {
+/*------------------  SINGLE PRODUCT START  -------------- */
+.singleProduct_container {
   display: flex;
   align-items: center;
   justify-content:center;
@@ -139,11 +141,16 @@ nav a:hover {
   height: 80vh;
   background-color:rgb(255, 255, 255);
 }
-.singlePoster_image {
+.singleProduct_image{
   display: flex;
   width: 30%;
 }
-.SinglePoster_info {
+
+.singleProduct_image img{
+  max-width: 250px;
+}
+
+.SingleProduct_info {
   color: rgb(48, 48, 48);
   display: flex;
   flex-direction: column;
@@ -152,7 +159,7 @@ nav a:hover {
   background-color:rgb(253, 255, 255)
 }
 
-.SinglePoster_info-productName{
+.SingleProduct_info-productName{
   font-size: 2.3rem;
 }
 .addToCard_button {
@@ -168,7 +175,7 @@ nav a:hover {
   cursor: pointer;
 }
 
-.singlePoster_info-goToCart {
+.singleProduct_info-goToCart {
   font-size: 1rem;
   border: none;
   color: white;
@@ -178,11 +185,11 @@ nav a:hover {
 }
 
 
-.singlePoster_info-goToCart:hover {
+.singleProduct_info-goToCart:hover {
   background-color: rgb(213, 206, 14);
   cursor: pointer;
 }
-/*------------------  SINGLE POSTER END  -------------- */
+/*------------------  SINGLE PRODUCT END  -------------- */
 
 
 

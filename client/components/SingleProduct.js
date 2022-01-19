@@ -11,36 +11,22 @@ export class SingleProduct extends React.Component {
 
  componentDidMount() {
       try{
-        const token = window.localStorage.token;
-        console.log('///////////////', JSON.parse(window.localStorage.getItem(token)));
+        //const token = window.localStorage.token;
         this.props.fetchSingleProduct(this.props.match.params.productId);
       } catch (err) {
           console.log(err);
       }
   }
 
-  // render() {
-  //   const product = this.props.product;
-
-  //   return (
-  //     <div>
-  //       <h1>{product.name} </h1>
-  //       <h2>Price: {product.price} </h2>
-  //       <h4>{product.description}</h4>
-  //       <img src={product.imageUrl}></img>
-  //     </div>
-  //   );
-  // }
-
   render() {
     const product = this.props.product;
     return (
-      <div className="singlePoster_container">
-        <div className="singlePoster_image">
+      <div className="singleProduct_container">
+        <div className="singleProduct_image">
           <img src={product.imageUrl}></img>
         </div>
-        <div className="SinglePoster_info">
-          <h1 className="SinglePoster_info-productName">{product.name} </h1>
+        <div className="SingleProduct_info">
+          <h1 className="SingleProduct_info-productName">{product.name} </h1>
           <h2>Price: ${product.price} </h2>
           <h3>Description</h3>
           <p>{product.description}</p>
