@@ -37,6 +37,7 @@ export class Cart extends React.Component {
   //   }
 
   render() {
+    console.log('THIS.STATE: ///////', this.state.quantity);
     return (
       // <div>HELLO WORLD</div>
       <div>
@@ -57,7 +58,6 @@ export class Cart extends React.Component {
                 >
                   <label htmlFor="quantity"></label>
                   <input
-                    type="quantity"
                     onChange={(evt) => {
                       this.setState({ quantity: evt.target.value });
                     }}
