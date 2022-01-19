@@ -27,12 +27,13 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/add-user', async (req, res) => {
+router.post('/add-user', async (req, res,next) => {
   try {
     const myUser = await User.create(req.body);
     res.status(200).send(myUser)
   } catch (error) {
     console.log(error);
+    next(error)
   }
 });
 
