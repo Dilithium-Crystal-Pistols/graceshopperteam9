@@ -1,39 +1,72 @@
 const router = require("express").Router();
 
+const { user } = require("pg/lib/defaults");
 const Cart = require("../db/models/Cart");
 const CartItem = require("../db/models/CartItem");
 const Product = require("../db/models/Product");
 const User = require("../db/models/User");
 
+const hasToken = async (req, res, next) => {
+
+  const user = await User.findByToken(req.headers.authorization);
+  if(user) {
+    req.user = user;
+    next()
+   } else {
+     next( new Error('User is not logged in'));
+   }
+  }
+
+
 //Route for when user clicks his/her cart
 //price, name, quantity
-router.get("/:cartId", async (req, res) => {
+router.get("/", hasToken, async (req, res) => {
   try {
-    const cart = await Cart.findByPk(req.params.cartId);
-    const products = await cart.getProducts();
-    let currentCart = [];
-    for (let i = 0; i < products.length; i++) {
-      currentCart.push({
-        userId: cart.userId,
-        cartId: cart.id,
-        productId: products[i].dataValues.id,
-        name: products[i].dataValues.name,
-        imageUrl: products[i].dataValues.imageUrl,
-        price: products[i].dataValues.price,
-        description: products[i].dataValues.description,
-        productType: products[i].dataValues.productType,
-        quantity: products[i].dataValues.cartItem.quantity,
-      });
-    }
-    res.send(currentCart);
+    const user = req.user;
+    const cart = await Cart.findOne({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      },
+      include: [
+        {
+          model: Product,
+        },
+      ],
+    });
+
+    console.log(cart);
+
+    // const products = await cart.getProducts();
+    // let currentCart = [];
+    // for (let i = 0; i < products.length; i++) {
+    //   currentCart.push({
+    //     userId: cart.userId,
+    //     cartId: cart.id,
+    //     productId: products[i].dataValues.id,
+    //     name: products[i].dataValues.name,
+    //     imageUrl: products[i].dataValues.imageUrl,
+    //     price: products[i].dataValues.price,
+    //     description: products[i].dataValues.description,
+    //     productType: products[i].dataValues.productType,
+    //     quantity: products[i].dataValues.cartItem.quantity,
+    //   });
+    // }
+    res.send(cart);
   } catch (error) {
     console.log(error);
   }
 });
 
-router.delete("/:cartId/:productId", async (req, res, next) => {
+router.delete("/:productId", hasToken, async (req, res, next) => {
   try {
-    const cart = await Cart.findByPk(req.params.cartId);
+    const user = req.user;
+    const cart = await Cart.findOne({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      }
+    });
     const cartItems = await CartItem.findOne({
       where: {
         cartId: cart.id,
@@ -41,15 +74,21 @@ router.delete("/:cartId/:productId", async (req, res, next) => {
       },
     });
     await cartItems.destroy();
-    res.sendStatus(200);
+    res.send(cartItems);
   } catch (err) {
     next(err);
   }
 });
 
-router.put("/:cartId/:productId", async (req, res) => {
+router.put("/:productId", hasToken, async (req, res) => {
   try {
-    const cart = await Cart.findByPk(req.params.cartId);
+    const user = req.user;
+    const cart = await Cart.findOne({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      }
+    });
     const cartItem = await CartItem.findOne({
       where: {
         cartId: cart.id,

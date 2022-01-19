@@ -36,7 +36,7 @@ class Routes extends Component {
             <Route path="/products/:productId" component={SingleProduct}/>
             <Route path="/updateproduct/:id" component={UpdateProduct} />
             <Route exact path="/add-product" component={AddProduct} />
-            <Route path="/cart/:cartId" component={Cart} />
+            <Route path="/cart/" component={Cart} />
           </Switch>
         ) : (
           <Switch>
