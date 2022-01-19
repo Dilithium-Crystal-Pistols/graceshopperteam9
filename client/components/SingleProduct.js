@@ -13,8 +13,6 @@ export class SingleProduct extends React.Component {
     try {
       //const token = window.localStorage.token;
       this.props.fetchSingleProduct(this.props.match.params.productId);
-      console.log(localStorage);
-
     } catch (err) {
       console.log(err);
     }

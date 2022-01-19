@@ -56,10 +56,10 @@ export const deleteCart = (cartId, productId) => {
   };
 };
 
-export const updateCart = (cartId, productId) => {
+export const updateCart = (cartId, productId, product) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`api/cart/${cartId}/${productId}`);
+      const { data } = await axios.put(`api/cart/${cartId}/${productId}`, product);
       dispatch(updateCartAction(data));
     } catch (err) {
       console.log(err);
@@ -90,7 +90,9 @@ export default function (state = [], action) {
           cartItem.productId !== action.cartItem.productId
       );
     case UPDATE_CART:
-      return state.map((cartItem) =>
+      console.log('STATE!: ', state);
+      console.log('ACTION!!!!!: ', action)
+      return state.find((cartItem) =>
         cartItem.cartId === action.cartItem.cartId &&
         cartItem.productId === action.cartItem.productId
           ? action.cartItem

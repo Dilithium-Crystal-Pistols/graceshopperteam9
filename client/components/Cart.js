@@ -9,8 +9,8 @@ export class Cart extends React.Component {
     this.state = {
       quantity: "",
     };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -22,11 +22,12 @@ export class Cart extends React.Component {
     }
   }
 
-  // handleChange(evt) {
-  //   this.setState({
-  //     quantity: evt.target.value,
-  //   });
-  // }
+  handleChange(evt) {
+    console.log(this.state);
+    this.setState({
+      quantity: evt.target.value,
+    });
+  }
 
   //  handleSubmit(evt) {
   //     evt.preventDefault();
@@ -38,7 +39,7 @@ export class Cart extends React.Component {
   //   }
 
   render() {
-    console.log('+++++++++PROPS: ', this.props)
+    //console.log('+++++++++PROPS: ', this.props)
     //console.log('THIS.STATE: ///////', this.state.quantity);
     return (
       // <div>HELLO WORLD</div>
@@ -55,14 +56,12 @@ export class Cart extends React.Component {
                   id="update-quantity"
                   onSubmit={(evt) => {
                     evt.preventDefault();
-                    this.props.updateCart(cartItem.cartId, cartItem.productId);
+                    this.props.updateCart(cartItem.cartId, cartItem.productId, this.state);
                   }}
                 >
                   <label htmlFor="quantity"></label>
                   <input
-                    onChange={(evt) => {
-                      this.setState({ quantity: evt.target.value });
-                    }}
+                    onChange={this.handleChange}
                     value={this.state.quantity}
                   />
                   <button type="submit">Update Quantity</button>
