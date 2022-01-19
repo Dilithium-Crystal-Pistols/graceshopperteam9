@@ -18,10 +18,11 @@ export const deleteCartAction = (cartItem) => {
   };
 };
 
-export const updateCartAction = (cartItem) => {
+export const updateCartAction = (cartItem, quantity) => {
   return {
     type: UPDATE_CART,
     cartItem,
+    quantity,
   };
 };
 
@@ -71,6 +72,8 @@ export default function (state = [], action) {
           cartItem.productId !== action.cartItem.productId
       );
     case UPDATE_CART:
+      console.log("THIS IS STATE: ", state);
+      console.log(action)
       return state.map((cartItem) =>
         cartItem.cartId === action.cartItem.cartId &&
         cartItem.productId === action.cartItem.productId

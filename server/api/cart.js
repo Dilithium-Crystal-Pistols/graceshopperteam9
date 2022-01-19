@@ -56,11 +56,7 @@ router.put("/:cartId/:productId", async (req, res) => {
         productId: req.params.productId,
       },
     });
-    res.send(
-      await cartItem.update({
-        quantity: req.body.quantity,
-      })
-    );
+    res.send(await cartItem.update(cartItem, cartItem.quantity));
   } catch (err) {
     console.log(err);
   }
