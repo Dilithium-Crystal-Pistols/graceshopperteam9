@@ -31,7 +31,7 @@ router.get("/:cartId", async (req, res) => {
   }
 });
 
-router.delete("/:cartId/:productId", async (req, res) => {
+router.delete("/:cartId/:productId", async (req, res, next) => {
   try {
     const cart = await Cart.findByPk(req.params.cartId);
     const cartItems = await CartItem.findOne({
@@ -41,9 +41,9 @@ router.delete("/:cartId/:productId", async (req, res) => {
       },
     });
     await cartItems.destroy();
-    res.sendStatus(200).redirect("/:cartId");
+    res.sendStatus(200);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
@@ -56,11 +56,10 @@ router.put("/:cartId/:productId", async (req, res) => {
         productId: req.params.productId,
       },
     });
-    res.send(
-      await cartItem.update({
-        quantity: req.body.quantity,
-      })
-    );
+    await cartItem.update({
+      quantity: req.body.quantity,
+    });
+    res.send(cartItem);
   } catch (err) {
     console.log(err);
   }
@@ -96,6 +95,5 @@ router.put("/:cartId/:productId", async (req, res) => {
 //     console.log(error);
 //   }
 // });
-
 
 module.exports = router;

@@ -48,7 +48,7 @@ export const fetchCart = (cartId) => {
 export const deleteCart = (cartId, productId) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`api/cart/${cartId}/${productId}`);
+      const { data } = await axios.delete(`/api/cart/${cartId}/${productId}`);
       dispatch(deleteCartAction(data));
     } catch (err) {
       console.log(err);
@@ -59,7 +59,7 @@ export const deleteCart = (cartId, productId) => {
 export const updateCart = (cartId, productId, product) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`api/cart/${cartId}/${productId}`, product);
+      const { data } = await axios.put(`/api/cart/${cartId}/${productId}`, product);
       dispatch(updateCartAction(data));
     } catch (err) {
       console.log(err);
