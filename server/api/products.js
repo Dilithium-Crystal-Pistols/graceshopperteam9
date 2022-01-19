@@ -66,7 +66,8 @@ router.put("/:productId", async (req, res) => {
 
 router.post("/:productId/:cartId", async (req, res) => {
   try {
-    const cart = await Cart.findByPk(req.params.cartId);
+    const cart = await Cart.findOrCreate(
+      {where: {inProgress: true}});
 
     const cartItem = await CartItem.findOne({
       where: {

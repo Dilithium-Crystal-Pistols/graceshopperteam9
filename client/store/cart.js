@@ -1,4 +1,5 @@
 import axios from "axios";
+const TOKEN = 'token';
 
 const SET_CART = "SET_CART";
 const DELETE_CART = "DELETE_CART";
@@ -34,10 +35,15 @@ export const addProductToCartAction = (product) => {
 }
 
 //THUNK
-export const fetchCart = (cartId) => {
+export const fetchCart = () => {
+  const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/cart/${cartId}`);
+      const { data } = await axios.get('/api/cart', {
+        headers: {
+          authorization: token
+        }
+      });
       dispatch(setCart(data));
     } catch (error) {
       console.log(error);
@@ -45,10 +51,15 @@ export const fetchCart = (cartId) => {
   };
 };
 
-export const deleteCart = (cartId, productId) => {
+export const deleteCart = (productId) => {
+  const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`api/cart/${cartId}/${productId}`);
+      const { data } = await axios.delete(`/api/cart/${productId}`, {
+        headers: {
+          authorization: token
+        }
+      });
       dispatch(deleteCartAction(data));
     } catch (err) {
       console.log(err);
@@ -56,10 +67,15 @@ export const deleteCart = (cartId, productId) => {
   };
 };
 
-export const updateCart = (cartId, productId, product) => {
+export const updateCart = (productId, cartItem) => {
+  const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`api/cart/${cartId}/${productId}`, product);
+      const { data } = await axios.put(`/api/cart/${productId}`, cartItem, {
+        headers: {
+          authorization: token
+        }
+      });
       dispatch(updateCartAction(data));
     } catch (err) {
       console.log(err);
@@ -81,22 +97,17 @@ export const addProductToCart = (productId) => {
 export default function (state = [], action) {
   switch (action.type) {
     case SET_CART:
-      return action.cartItems;
+      return action.cartItems.products;
     case DELETE_CART:
       //DOUBLE CHECK BELOW!!!!
       return state.filter(
-        (cartItem) =>
-          cartItem.campusId !== action.cartItem.campusId &&
+        (products) =>
+          products.id !== action.products.id &&
           cartItem.productId !== action.cartItem.productId
       );
     case UPDATE_CART:
-      console.log('STATE!: ', state);
-      console.log('ACTION!!!!!: ', action)
-      return state.find((cartItem) =>
-        cartItem.cartId === action.cartItem.cartId &&
-        cartItem.productId === action.cartItem.productId
-          ? action.cartItem
-          : cartItem
+      return state.map((cartItem) =>
+        cartItem.productId === action.cartItem.productId ? action.cartItem : cartItem
       );
     case ADD_PRODUCT_TO_CART:
       return [...state, action.product];

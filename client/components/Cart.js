@@ -6,28 +6,19 @@ import { Link } from "react-router-dom";
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      quantity: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
+
     //this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    try {
-      this.props.fetchCart(this.props.match.params.cartId);
-      localStorage.setItem('currentCartId', JSON.parse(this.props.match.params.cartId))
-    } catch (err) {
-      console.log(err);
-    }
+      this.props.fetchCart();
   }
 
-  handleChange(evt) {
-    console.log(this.state);
-    this.setState({
-      quantity: evt.target.value,
-    });
+  componentWillUnmount() {
+    console.log('I SHOULD NOT BE HERE')
   }
+
+
 
   //  handleSubmit(evt) {
   //     evt.preventDefault();
@@ -41,6 +32,7 @@ export class Cart extends React.Component {
   render() {
     //console.log('+++++++++PROPS: ', this.props)
     //console.log('THIS.STATE: ///////', this.state.quantity);
+    console.log(this.props.cartItems)
     return (
       // <div>HELLO WORLD</div>
       <div>
@@ -51,18 +43,18 @@ export class Cart extends React.Component {
                 <img src={cartItem.imageUrl}></img>
                 <h2>{cartItem.name}</h2>
                 <h2>Price: {cartItem.price}</h2>
-                <h2>Quantity: {cartItem.quantity}</h2>
+                <h2>Quantity: {cartItem.cartItem.quantity}</h2>
                 <form
                   id="update-quantity"
                   onSubmit={(evt) => {
                     evt.preventDefault();
-                    this.props.updateCart(cartItem.cartId, cartItem.productId, this.state);
+                    this.props.updateCart(cartItem.id, cartItem.cartItem);
                   }}
                 >
                   <label htmlFor="quantity"></label>
                   <input
-                    onChange={this.handleChange}
-                    value={this.state.quantity}
+                    value={cartItem.cartItem.quantity}
+                    onChange={(evt) => { cartItem.cartItem.quantity = evt.target.value}}
                   />
                   <button type="submit">Update Quantity</button>
                 </form>
@@ -80,8 +72,9 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => ({
-  fetchCart: (cartId) => dispatch(fetchCart(cartId)),
-  updateCart: (cartId, productId) => dispatch(updateCart(cartId, productId)),
+  fetchCart: () => dispatch(fetchCart()),
+  updateCart: (productId, cartItem) => dispatch(updateCart(productId, cartItem)),
+
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
