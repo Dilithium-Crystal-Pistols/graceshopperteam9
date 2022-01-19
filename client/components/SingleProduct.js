@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
-//import { addToCart } from "../store/cart";
+import { addProductToCart } from "../store/cart";
 import { Link } from "react-router-dom";
 
 export class SingleProduct extends React.Component {
@@ -9,13 +9,15 @@ export class SingleProduct extends React.Component {
     super(props);
   }
 
- componentDidMount() {
-      try{
-        //const token = window.localStorage.token;
-        this.props.fetchSingleProduct(this.props.match.params.productId);
-      } catch (err) {
-          console.log(err);
-      }
+  componentDidMount() {
+    try {
+      //const token = window.localStorage.token;
+      this.props.fetchSingleProduct(this.props.match.params.productId);
+      console.log(localStorage);
+
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {
@@ -30,7 +32,14 @@ export class SingleProduct extends React.Component {
           <h2>Price: ${product.price} </h2>
           <h3>Description</h3>
           <p>{product.description}</p>
-          <button className="addToCard_button" onClick={() => this.props.addToCart(this.props.product.id)}>
+          <button
+            className="addToCart_button"
+            onClick={() =>
+              this.props.addProductToCart(
+                this.props.product.id
+              )
+            }
+          >
             Add to Cart
           </button>
           {/* <Link to="/cart/:cartId">
@@ -51,7 +60,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
-    //addToCart: (posterId) => dispatch(addToCart(posterId)),
+    addProductToCart: (posterId) => dispatch(addProductToCart(posterId)),
   };
 };
 

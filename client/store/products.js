@@ -32,7 +32,7 @@ export const fetchProducts = () => {
 export const addProduct = (product, history) => {
   return async (dispatch) => {
     try {
-      console.log("in thunk");
+      //console.log("in thunk");
       const { data } = await axios.post("/api/products", product);
       dispatch(setAddProduct(data));
       history.push("/products");

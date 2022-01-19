@@ -3,6 +3,7 @@ import axios from "axios";
 const SET_CART = "SET_CART";
 const DELETE_CART = "DELETE_CART";
 const UPDATE_CART = "UPDATE_CART";
+const ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART";
 
 export const setCart = (cartItems) => {
   return {
@@ -24,6 +25,13 @@ export const updateCartAction = (cartItem) => {
     cartItem,
   };
 };
+
+export const addProductToCartAction = (product) => {
+  return {
+    type: ADD_PRODUCT_TO_CART,
+    product,
+  }
+}
 
 //THUNK
 export const fetchCart = (cartId) => {
@@ -59,6 +67,17 @@ export const updateCart = (cartId, productId) => {
   };
 };
 
+export const addProductToCart = (productId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(`/api/products/${productId}/${localStorage.currentCartId}`)
+      dispatch(addProductToCartAction(data));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
 export default function (state = [], action) {
   switch (action.type) {
     case SET_CART:
@@ -77,6 +96,8 @@ export default function (state = [], action) {
           ? action.cartItem
           : cartItem
       );
+    case ADD_PRODUCT_TO_CART:
+      return [...state, action.product];
     default:
       return state;
   }

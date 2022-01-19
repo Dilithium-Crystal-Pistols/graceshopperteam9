@@ -56,6 +56,7 @@ router.put("/:cartId/:productId", async (req, res) => {
         productId: req.params.productId,
       },
     });
+    console.log(req.body);
     res.send(
       await cartItem.update({
         quantity: req.body.quantity,
@@ -65,5 +66,37 @@ router.put("/:cartId/:productId", async (req, res) => {
     console.log(err);
   }
 });
+
+// router.post("/:cartId/:productId", async (req, res) => {
+//   try {
+//     const cart = await Cart.findByPk(req.params.cartId);
+
+//     const cartItem = await CartItem.findOne({
+//       where: {
+//         cartId: cart.id,
+//         productId: req.params.productId,
+//       },
+//     });
+//     //First need to check if item is already in cart. If it is, add to the quantity.
+//     if (cartItem) {
+//       res.send(
+//         await cartItem.update({
+//           quantity: cartItem.quantity+1,
+//         })
+//       );
+//     // Else, create a new CartItem
+//     } else {
+//       let newCartItem = await CartItem.create({
+//         quantity: 1,
+//         productId: req.params.productId,
+//         cartId: req.params.cartId,
+//       });
+//       res.send(await newCartItem);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 
 module.exports = router;
