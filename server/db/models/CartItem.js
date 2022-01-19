@@ -10,7 +10,8 @@ module.exports = db.define('cartItem', {
         allowNull: false,
         validate: {
             notEmpty: true,
-        }
+        },
+        defaultValue: 0
     },
 
     // priceAtCheckout: {
