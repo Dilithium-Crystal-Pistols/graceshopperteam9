@@ -10,6 +10,7 @@ export const setSingleProduct = (product) => {
   };
 };
 
+
 export const fetchSingleProduct = (productId) => {
   return async (dispatch) => {
     try {
@@ -20,6 +21,7 @@ export const fetchSingleProduct = (productId) => {
     }
   };
 };
+
 
 export default (state = {}, action) => {
   switch (action.type) {
