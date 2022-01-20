@@ -5,45 +5,45 @@ const Product = require("../db/models/Product");
 const Cart = require("../db/models/Cart");
 
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const products = await Product.findAll();
     res.send(products);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.get("/:productId", async (req, res) => {
+router.get("/:productId", async (req, res, next) => {
   try {
     const myProduct = await Product.findByPk(req.params.productId);
     res.send(myProduct);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.delete("/:productId", async (req, res) => {
+router.delete("/:productId", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId);
     if (product) {
       await product.destroy();
     }
     res.send(product);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.put("/:productId", async (req, res) => {
+router.put("/:productId", async (req, res,next) => {
   try {
     console.log("this is the body ", req.body);
     const product = await Product.findByPk(req.params.productId);
@@ -58,8 +58,8 @@ router.put("/:productId", async (req, res) => {
       })
     );
     console.log("after presumed update", product);
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 

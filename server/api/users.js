@@ -21,11 +21,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res,next ) => {
   try {
     res.status(200).send(await User.findByPk(req.params.id));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -40,25 +40,24 @@ router.post("/add-user", async (req, res, next) => {
     });
     res.status(200).send(myUser);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res,next) => {
   try {
     const myUser = User.findByPk(req.params.id);
     res.status(200).send(await myUser.update(req.body));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const myUser = await User.findByPk(req.params.id);
     await myUser.destroy();
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    next(err);
   }
 });
