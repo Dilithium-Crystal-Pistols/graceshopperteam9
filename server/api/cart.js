@@ -147,7 +147,13 @@ router.put("/checkout", hasToken, async (req, res) => {
         },
       ],
     });
-    cart.update({ inProgress: false })
+    await cart.update({ inProgress: false })
+    await Cart.create({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      }
+    });
     res.sendStatus(200);
   } catch (error) {
     console.log(error);

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { checkout } from "../store/checkout";
+import { checkout, clearCheckoutThunk } from "../store/checkout";
 import store from "../store";
 export class Checkout extends React.Component {
   constructor(props) {
@@ -10,9 +10,6 @@ export class Checkout extends React.Component {
 
   componentDidMount() {
     this.props.checkout()
-  }
-
-  componentWillUnmount() {
   }
 
   render() {
@@ -30,7 +27,7 @@ export class Checkout extends React.Component {
            <p>{user.address}</p>
             <h3>Your Total is: $ {totalPrice}</h3>
             <button className="finalizeTransaction"
-            // onClick={() => this.props.Checkout(this.props.cart)}
+            onClick={() => {this.props.clearCheckoutThunk()}}
             >
             Finalize Transaction
           </button>
@@ -50,7 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkout: () => dispatch(checkout())
+    checkout: () => dispatch(checkout()),
+    clearCheckoutThunk: () => dispatch(clearCheckoutThunk())
   };
 };
 
