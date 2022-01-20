@@ -18,7 +18,6 @@ export class Checkout extends React.Component {
   render() {
     const { totalPrice } = this.props
     let user = store.getState().auth;
-    console.log(user)
     return (
       <div className="checkout">
          <div className="checkout_info">
