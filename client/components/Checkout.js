@@ -25,7 +25,7 @@ export class Checkout extends React.Component {
            <h2>Full Name</h2>
            <p>{user.fName} {user.lName}</p>
            <h2>Email</h2>
-           <p>{}user.email</p>
+           <p>{user.email}</p>
            <h2>Address</h2>
            <p>{user.address}</p>
             <h3>Your Total is: $ {totalPrice}</h3>

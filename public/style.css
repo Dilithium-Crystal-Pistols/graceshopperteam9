@@ -408,7 +408,22 @@ form div {
   cursor: pointer;
 }
 /*------------------  SINGLE POSTER END  -------------- */
+
 }
+
+/*------------------  LOGIN_FORM START  -------------- */
+.login_form{
+  display: flex;
+  background-color: rgb(18, 18, 31);
+  flex-wrap: wrap;
+}
+
+.field {
+  min-width: 100%;
+}
+/*------------------  LOGIN_FORM END  -------------- */
+
+
 
 
 
