@@ -106,11 +106,70 @@ async function seed() {
       superheroId: 2,
       productType: "Poster",
     }),
+
+
+    Product.create({
+      name: "Superman Keychain 1",
+      imageUrl:
+        "https://www.lego.com/cdn/cs/set/assets/blt70d67c23ddf1a571/853952.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1",
+      price: 5,
+      description: "Superman Lego",
+      superheroId: 1,
+      productType: "Keychain",
+    }),
+    Product.create({
+      name: "Superman Keychain 2",
+      imageUrl:
+        "https://cdn11.bigcommerce.com/s-kjvm95bh8i/images/stencil/1280x1280/products/78794/129472/keychain-superman-logo-rka68052-rubber__74208.1626204573.jpg?c=2",
+      price: 7,
+      description: "Superman logo",
+      superheroId: 1,
+      productType: "Keychain",
+    }),
+    Product.create({
+      name: "Batman Keychain 1",
+      imageUrl:
+        "https://www.lego.com/cdn/cs/set/assets/blt20b57e8e359ed2a4/853951.jpg?fit=bounds&format=jpg&quality=80&width=1600&height=1600&dpr=1",
+      price: 5,
+      description: "Batman Lego",
+      superheroId: 2,
+      productType: "Keychain",
+    }),
+    Product.create({
+      name: "Batman Keychain 2",
+      imageUrl:
+        "https://m.media-amazon.com/images/I/71w+I2XlpSL._AC_SL1500_.jpg",
+      price: 6,
+      description: "Batman logo",
+      superheroId: 2,
+      productType: "Keychain",
+    }),
+    Product.create({
+      name: "Captain America Keychain 1",
+      imageUrl:
+        "https://realinfinitywar.com/wp-content/uploads/2018/08/captain-america-keychain.png",
+      price: 5,
+      description: "Captain America caricature",
+      superheroId: 3,
+      productType: "Keychain",
+    }),
+    Product.create({
+      name: "Captain America Keychain 2",
+      imageUrl:
+        "https://m.media-amazon.com/images/I/513sSyTE+sL._AC_SL1002_.jpg",
+      price: 7,
+      description: "Captain America shield",
+      superheroId: 2,
+      productType: "Keychain",
+    }),
+
   ]);
 
   const carts = await Promise.all([
     Cart.create({ userId: 1, inProgress: true }),
     Cart.create({ userId: 2, inProgress: false }),
+    Cart.create({ userId: 2, inProgress: false }),
+    Cart.create({ userId: 2, inProgress: true }),
   ]);
 
   const cartItems = await Promise.all([
@@ -137,6 +196,31 @@ async function seed() {
       //priceAtCheckout: 23,
       productId: 6,
       cartId: 2,
+    }),
+
+    CartItem.create({
+      quantity: 2,
+      //priceAtCheckout: 20,
+      productId: 10,
+      cartId: 3,
+    }),
+    CartItem.create({
+      quantity: 1,
+      //priceAtCheckout: 20,
+      productId: 3,
+      cartId: 3,
+    }),
+    CartItem.create({
+      quantity: 1,
+      //priceAtCheckout: 21,
+      productId: 4,
+      cartId: 3,
+    }),
+    CartItem.create({
+      quantity: 2,
+      //priceAtCheckout: 23,
+      productId: 7,
+      cartId: 4,
     }),
   ]);
 

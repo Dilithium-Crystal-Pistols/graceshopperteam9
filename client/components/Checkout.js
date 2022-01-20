@@ -21,13 +21,13 @@ export class Checkout extends React.Component {
 
     return (
       <div className="checkout">
-         <div className="checkou_info">
+         <div className="checkout_info">
            <h1>Check Out</h1>
-            <h3>Yor Total is : {totalPrice}</h3>
+            <h3>Your Total is: $ {totalPrice}</h3>
             <button className="finalizeTransaction"
             // onClick={() => this.props.Checkout(this.props.cart)}
             >
-            Finanlize Transaction
+            Finalize Transaction
           </button>
          </div>
       </div>

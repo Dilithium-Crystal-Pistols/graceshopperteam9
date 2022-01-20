@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const GuessHomePage = () => {
+const GuestHomePage = () => {
   return (
     <div className="homecontainer">
       <div className="home_header">
@@ -31,4 +31,4 @@ const GuessHomePage = () => {
   );
 };
 
-export default GuessHomePage;
+export default GuestHomePage;

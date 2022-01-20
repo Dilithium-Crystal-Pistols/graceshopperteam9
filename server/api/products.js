@@ -14,6 +14,28 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/posters", async (req, res, next) => {
+  try {
+    const products = await Product.findAll(
+      {where: {productType: 'Poster'}}
+    );
+    res.send(products);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/keychains", async (req, res, next) => {
+  try {
+    const products = await Product.findAll(
+      {where: {productType: 'Keychain'}}
+    );
+    res.send(products);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/:productId", async (req, res, next) => {
   try {
     const myProduct = await Product.findByPk(req.params.productId);

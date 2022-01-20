@@ -31,7 +31,10 @@ export class SingleProduct extends React.Component {
           <p>{product.description}</p>
           <button
             className="addToCart_button"
-            onClick={() => this.props.addProductToCart(product.id, product)}
+            onClick={() => {
+              this.props.addProductToCart(product.id, product),
+                window.location.reload(false);
+            }}
           >
             Add to Cart
           </button>
