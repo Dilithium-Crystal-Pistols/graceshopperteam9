@@ -17,18 +17,19 @@ export class Cart extends React.Component {
   }
 
   render() {
-
     return (
       // <div>HELLO WORLD</div>
       <div>
         <div className="cart" id="cart">
           {this.props.cartItems.map((cartItem) => {
             return (
-              <div key={cartItem.id}>
-                <img src={cartItem.imageUrl}></img>
-                <h2>{cartItem.name}</h2>
-                <h2>Price: {cartItem.price}</h2>
-                <h2>Quantity: {cartItem.cartItem.quantity}</h2>
+              <div className="cart_product" key={cartItem.id}>
+                <img className="cart_img" src={cartItem.imageUrl}></img>
+                <div className="cart_info">
+                  <h2>{cartItem.name}</h2>
+                  <h2>Price: ${cartItem.price}</h2>
+                  <h2>Quantity: {cartItem.cartItem.quantity}</h2>
+                </div>
                 <form
                   id="update-quantity"
                   onSubmit={(evt) => {
@@ -48,22 +49,25 @@ export class Cart extends React.Component {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select>
-                  <button type="submit">Update Quantity</button>
+                  <button type="submit">Update Qty</button>
                 </form>
-                <form onSubmit={(ev) => ev.preventDefault()}>
-                <button
-                  onClick={() => {
-                    this.props.deleteCart(cartItem.id);
-                    window.location.reload(false)
-                  }}
-                >
-                  Delete Product From Cart
-                </button>
+                <form  onSubmit={(ev) => ev.preventDefault()}>
+                  <button
+                    className="delete_from_cartBtn"
+                    onClick={() => {
+                      this.props.deleteCart(cartItem.id);
+                      window.location.reload(false);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </form>
               </div>
             );
           })}
-          <Link to={'/cart/checkout'}><button className="checkoutBtn">Checkout</button></Link>
+          <Link to={"/cart/checkout"}>
+            <button className="checkoutBtn">Checkout</button>
+          </Link>
         </div>
       </div>
     );
