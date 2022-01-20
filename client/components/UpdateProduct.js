@@ -31,6 +31,7 @@ export class UpdateProduct extends React.Component {
 
   render() {
     return (
+      <div className='login_form'>
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input
@@ -70,6 +71,7 @@ export class UpdateProduct extends React.Component {
         <br></br>
         <button type="submit">Submit Poster</button>
       </form>
+      </div>
     );
   }
 }
