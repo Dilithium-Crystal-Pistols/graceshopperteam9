@@ -11,14 +11,12 @@ export class Cart extends React.Component {
   }
 
   componentDidMount() {
-      this.props.fetchCart();
+    this.props.fetchCart();
   }
 
   componentWillUnmount() {
-    console.log('I SHOULD NOT BE HERE')
+    console.log("I SHOULD NOT BE HERE");
   }
-
-
 
   //  handleSubmit(evt) {
   //     evt.preventDefault();
@@ -30,20 +28,20 @@ export class Cart extends React.Component {
   //   }
 
   render() {
-    //console.log('+++++++++PROPS: ', this.props)
-    //console.log('THIS.STATE: ///////', this.state.quantity);
-    console.log(this.props.cartItems)
     return (
-      // <div>HELLO WORLD</div>
-      <div>
-        <div className="cart" id="cart">
-          {this.props.cartItems.map((cartItem) => {
-            return (
-              <div key={cartItem.productId}>
+      <div className="cart_container" id="cart">
+        {this.props.cartItems.map((cartItem) => {
+          return (
+            <div className="cart_product" key={cartItem.productId}>
+              <div className="cart_img">
                 <img src={cartItem.imageUrl}></img>
+              </div>
+              <div className="cart_info">
                 <h2>{cartItem.name}</h2>
                 <h2>Price: {cartItem.price}</h2>
                 <h2>Quantity: {cartItem.cartItem.quantity}</h2>
+              </div>
+              <div className="cart_form">
                 <form
                   id="update-quantity"
                   onSubmit={(evt) => {
@@ -54,14 +52,16 @@ export class Cart extends React.Component {
                   <label htmlFor="quantity"></label>
                   <input
                     value={cartItem.cartItem.quantity}
-                    onChange={(evt) => { cartItem.cartItem.quantity = evt.target.value}}
+                    onChange={(evt) => {
+                      cartItem.cartItem.quantity = evt.target.value;
+                    }}
                   />
                   <button type="submit">Update Quantity</button>
                 </form>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -73,8 +73,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
   fetchCart: () => dispatch(fetchCart()),
-  updateCart: (productId, cartItem) => dispatch(updateCart(productId, cartItem)),
-
+  updateCart: (productId, cartItem) =>
+    dispatch(updateCart(productId, cartItem)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
-

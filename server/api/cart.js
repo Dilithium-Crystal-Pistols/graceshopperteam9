@@ -7,7 +7,6 @@ const Product = require("../db/models/Product");
 const User = require("../db/models/User");
 
 const hasToken = async (req, res, next) => {
-
   const user = await User.findByToken(req.headers.authorization);
   if(user) {
     req.user = user;
