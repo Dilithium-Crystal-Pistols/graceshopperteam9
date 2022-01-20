@@ -3,6 +3,7 @@ import history from "../history";
 
 const SET_PRODUCTS = "SET_PRODUCTS";
 const ADD_PRODUCT = "ADD_PRODUCT";
+const TOKEN = "token"
 
 export const setProducts = (products) => {
   return {
@@ -33,7 +34,12 @@ export const addProduct = (product, history) => {
   return async (dispatch) => {
     try {
       //console.log("in thunk");
-      const { data } = await axios.post("/api/products", product);
+      const token = window.localStorage.getItem(TOKEN)
+      const { data } = await axios.post("/api/products", product, {
+        headers: {
+          authorization:token
+        }
+      });
       dispatch(setAddProduct(data));
       history.push("/products");
     } catch (error) {

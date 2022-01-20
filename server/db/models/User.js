@@ -85,7 +85,7 @@ User.authenticate = async function({ username, password }){
       const error = Error('Incorrect username/password');
       error.status = 401;
       throw error;
-    }
+  }
     return user.generateToken();
 };
 
