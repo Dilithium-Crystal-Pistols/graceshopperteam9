@@ -35,7 +35,6 @@ router.get("/", hasToken, async (req, res) => {
       ],
     });
 
-    console.log(cart);
 
     // const products = await cart.getProducts();
     // let currentCart = [];
@@ -134,5 +133,48 @@ router.put("/:productId", hasToken, async (req, res) => {
 //     console.log(error);
 //   }
 // });
+
+
+router.get("/checkout", hasToken, async (req, res) => {
+  try {
+    const user = req.user;
+    const cart = await Cart.findOne({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      },
+      include: [
+        {
+          model: Product,
+        },
+      ],
+    });
+    res.send(cart);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.put("/checkout", hasToken, async (req, res) => {
+  console.log('////////////Hello from PUT ROUTE')
+  try {
+    const user = req.user;
+    const cart = await Cart.findOne({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      },
+      include: [
+        {
+          model: Product,
+        },
+      ],
+    });
+    cart.update({ inProgress: false })
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

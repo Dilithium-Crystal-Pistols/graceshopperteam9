@@ -248,6 +248,12 @@ nav a:hover {
 /*------------- cart styles end --------------*/
 
 
+.checkout {
+  color: rgb(48, 48, 48);
+  display: flex;
+  justify-content: center;
+}
+
 
 form div {
   margin: 1em;
