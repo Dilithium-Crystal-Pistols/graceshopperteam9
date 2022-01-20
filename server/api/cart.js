@@ -7,20 +7,18 @@ const Product = require("../db/models/Product");
 const User = require("../db/models/User");
 
 const hasToken = async (req, res, next) => {
-
   const user = await User.findByToken(req.headers.authorization);
-  if(user) {
+  if (user) {
     req.user = user;
-    next()
-   } else {
-     next( new Error('User is not logged in'));
-   }
+    next();
+  } else {
+    next(new Error("User is not logged in"));
   }
-
+};
 
 //Route for when user clicks his/her cart
 //price, name, quantity
-router.get("/", hasToken, async (req, res) => {
+router.get("/", hasToken, async (req, res, next) => {
   try {
     const user = req.user;
     const cart = await Cart.findOne({
@@ -34,26 +32,9 @@ router.get("/", hasToken, async (req, res) => {
         },
       ],
     });
-
-
-    // const products = await cart.getProducts();
-    // let currentCart = [];
-    // for (let i = 0; i < products.length; i++) {
-    //   currentCart.push({
-    //     userId: cart.userId,
-    //     cartId: cart.id,
-    //     productId: products[i].dataValues.id,
-    //     name: products[i].dataValues.name,
-    //     imageUrl: products[i].dataValues.imageUrl,
-    //     price: products[i].dataValues.price,
-    //     description: products[i].dataValues.description,
-    //     productType: products[i].dataValues.productType,
-    //     quantity: products[i].dataValues.cartItem.quantity,
-    //   });
-    // }
     res.send(cart);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 });
 
@@ -64,7 +45,7 @@ router.delete("/:productId", hasToken, async (req, res, next) => {
       where: {
         userId: user.id,
         inProgress: true,
-      }
+      },
     });
     const cartItems = await CartItem.findOne({
       where: {
@@ -79,14 +60,14 @@ router.delete("/:productId", hasToken, async (req, res, next) => {
   }
 });
 
-router.put("/:productId", hasToken, async (req, res) => {
+router.put("/:productId", hasToken, async (req, res, next) => {
   try {
     const user = req.user;
     const cart = await Cart.findOne({
       where: {
         userId: user.id,
         inProgress: true,
-      }
+      },
     });
     const cartItem = await CartItem.findOne({
       where: {
@@ -99,40 +80,36 @@ router.put("/:productId", hasToken, async (req, res) => {
     });
     res.send(cartItem);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 });
 
-// router.post("/:cartId/:productId", async (req, res) => {
-//   try {
-//     const cart = await Cart.findByPk(req.params.cartId);
+router.post("/:productId", hasToken, async (req, res, next) => {
+  try {
+    const user = req.user;
 
-//     const cartItem = await CartItem.findOne({
-//       where: {
-//         cartId: cart.id,
-//         productId: req.params.productId,
-//       },
-//     });
-//     //First need to check if item is already in cart. If it is, add to the quantity.
-//     if (cartItem) {
-//       res.send(
-//         await cartItem.update({
-//           quantity: cartItem.quantity+1,
-//         })
-//       );
-//     // Else, create a new CartItem
-//     } else {
-//       let newCartItem = await CartItem.create({
-//         quantity: 1,
-//         productId: req.params.productId,
-//         cartId: req.params.cartId,
-//       });
-//       res.send(await newCartItem);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+    const [ cart ] = await Cart.findOrCreate({
+      where: {
+        userId: user.id,
+        inProgress: true,
+      },
+    })
+
+    let [ cartItem ] = await CartItem.findOrCreate({
+      where: {
+        cartId: cart.dataValues.id,
+        productId: req.params.productId,
+      },
+    });
+
+    await cartItem.update({
+      quantity: cartItem.dataValues.quantity + 1,
+    });
+    res.send(cartItem);
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 router.get("/checkout", hasToken, async (req, res) => {
