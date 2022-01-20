@@ -14,21 +14,27 @@ export class Cart extends React.Component {
 
   componentDidMount() {
     this.props.fetchCart();
+
   }
 
   render() {
 
     return (
-      // <div>HELLO WORLD</div>
+     
       <div>
-        <div className="cart" id="cart">
-          {this.props.cartItems.map((cartItem) => {
+        <div className="cart_container" id="cart">
+            {this.props.cartItems.map((cartItem) => {
             return (
-              <div key={cartItem.id}>
+              <div className="cart_product" key={cartItem.id}>
+                <div className="cart_img">>>>>>>> mainCopyTest
                 <img src={cartItem.imageUrl}></img>
+              </div>
+              <div className="cart_info">
                 <h2>{cartItem.name}</h2>
                 <h2>Price: {cartItem.price}</h2>
                 <h2>Quantity: {cartItem.cartItem.quantity}</h2>
+              </div>
+              <div className="cart_form">
                 <form
                   id="update-quantity"
                   onSubmit={(evt) => {
@@ -77,7 +83,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchCart: () => dispatch(fetchCart()),
   updateCart: (productId, cartItem) =>
-    dispatch(updateCart(productId, cartItem)),
+  dispatch(updateCart(productId, cartItem)),
   deleteCart: (productId) => dispatch(deleteCart(productId)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
