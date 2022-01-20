@@ -11,7 +11,6 @@ export class SingleProduct extends React.Component {
 
   componentDidMount() {
     try {
-      //const token = window.localStorage.token;
       this.props.fetchSingleProduct(this.props.match.params.productId);
     } catch (err) {
       console.log(err);
@@ -32,11 +31,7 @@ export class SingleProduct extends React.Component {
           <p>{product.description}</p>
           <button
             className="addToCart_button"
-            onClick={() =>
-              this.props.addProductToCart(
-                this.props.product.id
-              )
-            }
+            onClick={() => this.props.addProductToCart(product.id, product)}
           >
             Add to Cart
           </button>
@@ -58,7 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
-    addProductToCart: (posterId) => dispatch(addProductToCart(posterId)),
+    addProductToCart: (productId) => dispatch(addProductToCart(productId)),
   };
 };
 

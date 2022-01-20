@@ -15,12 +15,12 @@ const isAdmin = async (req, res, next) => {
     next(new Error('No User or Not an Admin'))
   };
 };
+
 router.get("/",async (req, res,next) => {
   try {
     const products = await Product.findAll();
     res.send(products);
   } catch (error) {
-    console.log(error);
     next(error)
   }
 });
@@ -28,10 +28,8 @@ router.get("/",async (req, res,next) => {
 router.get("/:productId",async (req, res,next) => {
   try {
     const myProduct = await Product.findByPk(req.params.productId);
-    console.log("LOGGING myProduct: ", myProduct);
     res.send(myProduct);
   } catch (error) {
-    console.log(error);
     next(error)
   }
 });
@@ -79,36 +77,6 @@ router.put("/:productId",isAdmin, async (req, res,next) => {
   }
 });
 
-router.post("/:productId/:cartId", async (req, res) => {
-  try {
-    const cart = await Cart.findOrCreate(
-      {where: {inProgress: true}});
 
-    const cartItem = await CartItem.findOne({
-      where: {
-        cartId: cart.id,
-        productId: req.params.productId,
-      },
-    });
-    //First need to check if item is already in cart. If it is, add to the quantity.
-    if (cartItem) {
-      res.send(
-        await cartItem.update({
-          quantity: cartItem.quantity+1,
-        })
-      );
-    // Else, create a new CartItem
-    } else {
-      let newCartItem = await CartItem.create({
-        quantity: 1,
-        productId: req.params.productId,
-        cartId: req.params.cartId,
-      });
-      res.send(await newCartItem);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 module.exports = router;
