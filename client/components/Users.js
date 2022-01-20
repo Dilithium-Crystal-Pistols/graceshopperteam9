@@ -26,7 +26,6 @@ export class Users extends React.Component {
                 <h2>Email: { user.email}</h2>
                 <h2>Address: { user.address}</h2>
 
-                {/* <h2>Price:{product.price}</h2> */}
               </div>
             );
           })}

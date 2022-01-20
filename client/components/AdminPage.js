@@ -17,6 +17,7 @@ export class AdminPage extends React.Component {
         <div className="product_container">
         <div id="product-list">
         <Link to="/admin/add-product" style={{color:'black'}}>Add a Product</Link>
+        <Link to="/admin/users" style={{color:'black'}}>See Users</Link>
           {this.props.products.map((product) => {
             return (
               <div className="posters_product" key={product.id}>
