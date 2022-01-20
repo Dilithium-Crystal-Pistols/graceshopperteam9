@@ -2,6 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import store from "../store";
+
+
+const isAdmin = () => {
+  const user = store.getState().auth
+  if (user.isAdmin === true) {
+    return true
+  } else {
+    return false
+  }
+}
 
 const Navbar = ({ handleClick, isLoggedIn}) => (
   <div className="nav_bar">
@@ -26,6 +37,7 @@ const Navbar = ({ handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      {isAdmin()?<Link to="/admin">Admin Page</Link> :<a>not admin</a>}
     </nav>
   </div>
 );

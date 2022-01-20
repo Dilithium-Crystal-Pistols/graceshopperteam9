@@ -34,13 +34,14 @@ class Routes extends Component {
 
             <Route path="/home" component={Home} />
             <Route exact path ="/products" component={Products}/>
-            <Route path="/admin" component={AdminPage}/>
+            <Route exact path="/admin" component={AdminPage}/>
             <Route path="/products/:productId" component={SingleProduct}/>
             <Route path="/updateproduct/:id" component={UpdateProduct} />
+            <Route exact path="/admin/add-product" component={AddProduct} />
+            <Route exact path="/admin/users" component={Users} />
             <Route exact path="/add-product" component={AddProduct} />
             <Route exact path="/cart" component={Cart} />
             <Route path="/cart/checkout" component={Checkout} />
-            <Route path="/users" component={Users} />
           </Switch>
         ) : (
           <Switch>

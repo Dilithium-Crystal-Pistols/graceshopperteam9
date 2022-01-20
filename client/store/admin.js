@@ -1,11 +1,12 @@
 import axios from "axios";
+import { token } from "morgan";
 import { DELETE } from "sequelize/dist/lib/query-types";
 import history from "../history";
 
 const ADD_PRODUCT = "ADD_PRODUCT";
 const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-
+const TOKEN ='token'
 export const addProductAction = (product) => {
   return {
     type: ADD_PRODUCT,
@@ -43,8 +44,14 @@ export const updateProductAction = (product,id) => {
 export const removeProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.delete(`api/posters/${id}`);
+      const token = window.localStorage.getItem(TOKEN)
+      const { data } = await axios.delete(`api/products/${id}`, {
+        headers: {
+          authorization:token
+        }
+      });
       dispatch(removeProductAction(data));
+      history.push('/admin')
     } catch (err) {
       console.log(err);
     }
@@ -54,10 +61,16 @@ export const removeProduct = (id) => {
 export const updateProduct = (product,id) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem(TOKEN)
       console.log("in update thunk");
-      const { data } = await axios.put(`/api/posters/${id}`, product);
+      const { data } = await axios.put(`/api/products/${id}`, product, {
+        headers: {
+          authorization:token
+        }
+      });
       console.log("frontend data from thunk",data);
       dispatch(updateProductAction(data));
+      history.push('/admin')
     } catch (err) {
       console.log(err);
     }
