@@ -278,6 +278,20 @@ padding-left: 1rem;
   color: rgb(48, 48, 48);
   display: flex;
   justify-content: center;
+  height: 100vh;
+  margin-top: 2rem
+}
+
+.checkout h1 {
+  width: 100%;
+}
+.checkout_info {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 80vh;
+  background-color: rgb(242, 244, 246);
+  padding: 1rem;
 }
 
 .checkoutBtn {
@@ -291,6 +305,19 @@ padding-left: 1rem;
   margin: 1rem;
 }
 .checkoutBtn:hover {
+  background-color: rgb(14, 210, 213);
+  cursor: pointer;
+}
+.finalizeTransaction{
+  font-family: 'Puritan', sans-serif;
+  font-size: 1rem;
+  border: none;
+  color: white;
+  background-color: rgb(2, 67, 179);
+  padding: 1rem;
+  margin: 1rem;
+}
+.finalizeTransaction:hover{
   background-color: rgb(14, 210, 213);
   cursor: pointer;
 }

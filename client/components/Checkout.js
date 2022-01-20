@@ -10,7 +10,6 @@ export class Checkout extends React.Component {
 
   componentDidMount() {
     this.props.checkout()
-
   }
 
   componentWillUnmount() {
@@ -18,11 +17,18 @@ export class Checkout extends React.Component {
 
   render() {
     const { totalPrice } = this.props
-
+    let user = store.getState().auth;
+    console.log(user)
     return (
       <div className="checkout">
          <div className="checkout_info">
            <h1>Check Out</h1>
+           <h2>Full Name</h2>
+           <p>{user.fName} {user.lName}</p>
+           <h2>Email</h2>
+           <p>{}user.email</p>
+           <h2>Address</h2>
+           <p>{user.address}</p>
             <h3>Your Total is: $ {totalPrice}</h3>
             <button className="finalizeTransaction"
             // onClick={() => this.props.Checkout(this.props.cart)}
