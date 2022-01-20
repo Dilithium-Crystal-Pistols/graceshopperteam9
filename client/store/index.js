@@ -7,9 +7,12 @@ import products from "./products";
 import singleProduct from "./singleProduct";
 import admin from "./admin";
 import cart from "./cart";
+import checkout from "./checkout";
 import users from './users'
 
-const reducer = combineReducers({ auth, products, singleProduct, admin, cart , users});
+
+const reducer = combineReducers({ auth, products, singleProduct, admin, cart, users, checkout });
+
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
@@ -22,3 +25,4 @@ export * from "./products";
 export * from "./singleProduct";
 export * from "./admin";
 export * from "./cart";
+export * from "./checkout";

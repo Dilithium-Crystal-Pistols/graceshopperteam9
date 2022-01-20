@@ -27,10 +27,10 @@ export const updateCartAction = (cartItem) => {
   };
 };
 
-export const addProductToCartAction = (product) => {
+export const addProductToCartAction = (cartItem) => {
   return {
     type: ADD_PRODUCT_TO_CART,
-    product,
+    cartItem,
   }
 }
 
@@ -83,10 +83,15 @@ export const updateCart = (productId, cartItem) => {
   };
 };
 
-export const addProductToCart = (productId) => {
+export const addProductToCart = (productId, cartItem) => {
+  const token = window.localStorage.getItem(TOKEN)
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`/api/products/${productId}/${localStorage.currentCartId}`)
+      const { data } = await axios.post(`/api/cart/${productId}`, cartItem, {
+        headers: {
+          authorization: token
+        }
+      });
       dispatch(addProductToCartAction(data));
     } catch (err) {
       console.log(err);
@@ -99,18 +104,16 @@ export default function (state = [], action) {
     case SET_CART:
       return action.cartItems.products;
     case DELETE_CART:
-      //DOUBLE CHECK BELOW!!!!
       return state.filter(
         (products) =>
-          products.id !== action.products.id &&
-          cartItem.productId !== action.cartItem.productId
+          products.id !== action.products.id
       );
     case UPDATE_CART:
       return state.map((cartItem) =>
         cartItem.productId === action.cartItem.productId ? action.cartItem : cartItem
       );
     case ADD_PRODUCT_TO_CART:
-      return [...state, action.product];
+      return [...state, action.cartItem];
     default:
       return state;
   }

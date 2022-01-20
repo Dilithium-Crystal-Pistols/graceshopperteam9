@@ -1,39 +1,32 @@
 import React from "react";
+import Select from "react-select";
 import { connect } from "react-redux";
-import { fetchCart, updateCart } from "../store/cart";
+import { fetchCart, updateCart, deleteCart } from "../store/cart";
 import { Link } from "react-router-dom";
 
 export class Cart extends React.Component {
   constructor(props) {
     super(props);
-
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      quantity: "",
+    };
   }
 
   componentDidMount() {
     this.props.fetchCart();
-  }
 
-  componentWillUnmount() {
-    console.log("I SHOULD NOT BE HERE");
   }
-
-  //  handleSubmit(evt) {
-  //     evt.preventDefault();
-  //     this.props.updateCart(
-  //       this.props.match.params.cartId,
-  //       this.props.match.params.productId
-  //     );
-  //     this.props.fetchCart(this.props.match.params.cartId);
-  //   }
 
   render() {
+
     return (
-      <div className="cart_container" id="cart">
-        {this.props.cartItems.map((cartItem) => {
-          return (
-            <div className="cart_product" key={cartItem.productId}>
-              <div className="cart_img">
+     
+      <div>
+        <div className="cart_container" id="cart">
+            {this.props.cartItems.map((cartItem) => {
+            return (
+              <div className="cart_product" key={cartItem.id}>
+                <div className="cart_img">>>>>>>> mainCopyTest
                 <img src={cartItem.imageUrl}></img>
               </div>
               <div className="cart_info">
@@ -50,18 +43,34 @@ export class Cart extends React.Component {
                   }}
                 >
                   <label htmlFor="quantity"></label>
-                  <input
-                    value={cartItem.cartItem.quantity}
+                  <select
                     onChange={(evt) => {
                       cartItem.cartItem.quantity = evt.target.value;
                     }}
-                  />
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
                   <button type="submit">Update Quantity</button>
                 </form>
+                <form onSubmit={(ev) => ev.preventDefault()}>
+                <button
+                  onClick={() => {
+                    this.props.deleteCart(cartItem.id);
+                    window.location.reload(false)
+                  }}
+                >
+                  Delete Product From Cart
+                </button>
+                </form>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+          <Link to={'/cart/checkout'}><button className="checkoutBtn">Checkout</button></Link>
+        </div>
       </div>
     );
   }
@@ -74,6 +83,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchCart: () => dispatch(fetchCart()),
   updateCart: (productId, cartItem) =>
-    dispatch(updateCart(productId, cartItem)),
+  dispatch(updateCart(productId, cartItem)),
+  deleteCart: (productId) => dispatch(deleteCart(productId)),
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
