@@ -22,6 +22,7 @@ async function seed() {
       address: "3578 Audry St Zip code 11587, Brooklyn NY",
       username: "jsmith",
       password: "123",
+      isAdmin:true
     }),
     User.create({
       fName: "Jane",

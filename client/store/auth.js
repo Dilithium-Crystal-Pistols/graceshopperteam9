@@ -12,7 +12,10 @@ const SIGN_UP = 'SIGN_UP'
 /**
  * ACTION CREATORS
  */
-const setAuth = auth => ({type: SET_AUTH, auth})
+const setAuth = auth => ({
+  type: SET_AUTH, 
+  auth
+})
 const setSignUp = signUp => ({
   type: SIGN_UP,
   signUp
@@ -48,7 +51,7 @@ export const authSignUp = (username, password, fName, lName, email, address) => 
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
   } catch (authError) {
-    return dispatch(setAuth({error: authError}))
+    return dispatch(setSignUp({error: authError}))
   }
 }
 
