@@ -13,6 +13,7 @@ import AdminPage from './components/AdminPage';
 import UpdateProduct from './components/UpdateProduct';
 import AddProduct from './components/AddProduct';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 import Users from './components/Users';
 
 /**
@@ -37,12 +38,9 @@ class Routes extends Component {
             <Route path="/products/:productId" component={SingleProduct}/>
             <Route path="/updateproduct/:id" component={UpdateProduct} />
             <Route exact path="/add-product" component={AddProduct} />
-
-            <Route path="/cart/" component={Cart} />
-
-            
+            <Route exact path="/cart" component={Cart} />
+            <Route path="/cart/checkout" component={Checkout} />
             <Route path="/users" component={Users} />
-
           </Switch>
         ) : (
           <Switch>
@@ -52,6 +50,8 @@ class Routes extends Component {
             <Route path="/home" component={GuestHomePage} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct}/>
+            <Route exact path="/cart" component={Cart} />
+            <Route path="/cart/checkout" component={Checkout} />
           </Switch>
         )}
       </div>
